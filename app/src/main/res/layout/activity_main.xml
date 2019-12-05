@@ -1,48 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
     <Button
-        android:id="@+id/pickTimeBtn"
+        android:id="@+id/pickOutTimeBtn"
         android:text="Pick Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/timeTv"
+        android:id="@+id/textViewOutTime"
         android:text="Time"
         android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+-->
 
     <Button
-        android:id="@+id/pickTimeBtn2"
-        android:text="Pick Time"
+        android:id="@+id/pickInTimeBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Select your In Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toEndOf="@+id/textViewInTime"
+        app:layout_constraintTop_toTopOf="@+id/textViewInTime" />
+
     <TextView
-        android:id="@+id/timeTv2"
+        android:id="@+id/textViewInTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Time"
         android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ButtonTest" />
+        android:text="ButtonTest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
-        android:id="@+id/textViewTest"
-        android:layout_width="match_parent"
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextViewTest" />
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Completed(HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTimeCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Time"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
 
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textViewHomeTimeCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Remaining"
+        app:layout_constraintStart_toEndOf="@+id/textViewTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Remaining for 9hr (HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remaining"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:text="Remaining for 8hr(HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textViewInTime"
+        app:layout_constraintStart_toStartOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remaining"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
