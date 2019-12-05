@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -74,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Remaining"
+        android:text="HH"
         app:layout_constraintStart_toEndOf="@+id/textViewTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
@@ -97,10 +98,10 @@
 
 
     <TextView
-        android:id="@+id/textViewHomeTimeRemf8"
+        android:id="@+id/textViewHomeTimeRemf9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remaining"
+        android:text="HH"
         app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -122,10 +123,37 @@
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/textViewHomeTimeRemf9"
+        android:id="@+id/textViewHomeMinTimeRemf8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remaining"
+        android:text="MM"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeMinTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewHomeMinTimeCompleted"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="MM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewHomeMinTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MM"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeMinTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH"
         app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
