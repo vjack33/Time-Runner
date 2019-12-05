@@ -2,11 +2,14 @@ package com.example.myapplication
 
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.joda.time.*
+import org.joda.time.DateTime
+import org.joda.time.LocalTime
+import org.joda.time.Minutes
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,23 +20,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)
-        val textViewInTime = findViewById<TextView>(R.id.textViewInTime)
+/*
+        Initialization of every TextView and Buttons
+*/
+        val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                   // Select Time Button Init
+        val textViewInTime = findViewById<TextView>(R.id.textViewInTime)                                // Main Time Entry Text Init
 
-        val submitBtn = findViewById<Button>(R.id.buttonSubmit)
-        val timeCompletedTextView = findViewById<TextView>(R.id.textViewTimeCompleted)
-        val timeRemf8TextView = findViewById<TextView>(R.id.textViewTimeRemf8)
-        val timeRemf9TextView = findViewById<TextView>(R.id.textViewTimeRemf9)
+        val submitBtn = findViewById<Button>(R.id.buttonSubmit)                                         // Submit Button Init
 
-        val timeCompletedHomeTextView = findViewById<TextView>(R.id.textViewHomeTimeCompleted)
-        val timeCompletedHomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeCompleted)
 
-        val timeRemf8HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf8)
-        val timeRemf8HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf8)
+        val timeCompletedTextView = findViewById<TextView>(R.id.textViewTimeCompleted)                  // L1 : Completed Time hr:min view
+        val timeCompletedHomeTextView = findViewById<TextView>(R.id.textViewHomeTimeCompleted)          // L1 : Completed final time HH view
+        val timeCompletedHomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeCompleted)    // L1 : Completed final time MM view
 
-        val timeRemf9HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf9)
-        val timeRemf9HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf9)
+        val timeRemf9TextView = findViewById<TextView>(R.id.textViewTimeRemf9)                          // L2 : Remaining Time for 9hr hr:min view
+        val timeRemf9HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf9)                  // L2 : Remaining final time for 9hr HH view
+        val timeRemf9HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf9)            // L2 : Remaining final time for 9hr MM view
 
+        val timeRemf8TextView = findViewById<TextView>(R.id.textViewTimeRemf8)                          // L3 : Remaining Time for 8hr hr:min view
+        val timeRemf8HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf8)                  // L3 : Remaining final time for 8hr HH view
+        val timeRemf8HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf8)            // L3 : Remaining final time for 8hr MM view
+/*
+         Time Picker logic
+*/
         mPickInTimeBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
@@ -53,8 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         submitBtn.setOnClickListener {
 
-            val format =
-                SimpleDateFormat("HH:mm")
+            val format = SimpleDateFormat("HH:mm")
             val localTime = LocalTime()
             var d1: Date? = null
             var d2: Date? = null
@@ -62,12 +70,20 @@ class MainActivity : AppCompatActivity() {
             var d3: Date? = null
             var d4: Date? = null
 
-            Toast.makeText(this@MainActivity, localTime.toString() , Toast.LENGTH_SHORT).show()
-            try {
-                d1 = format.parse(textViewInTime.text.toString())
-                d2 = format.parse(localTime.toString())
 
-                d3 = format.parse(localTime.plusHours(9).toString())
+            try {
+
+                val inputDate = SimpleDateFormat("dd/MM/yy")
+                val outputDate = SimpleDateFormat("dd MMM yyyy")
+
+                d1 = format.parse(textViewInTime.text.toString())                                       // Parse Time selector text as Time
+                d2 = format.parse(localTime.toString())                                                 // Get local time from device
+
+
+                Toast.makeText(this@MainActivity, d1.toString() , Toast.LENGTH_SHORT).show()
+
+
+                d3 = format.parse(localTime.plusHours(9).toString())    // Add 9 hr to local time
                 d4 = format.parse(localTime.plusHours(8).toString())
 
                 val dt1 = DateTime(d1)
