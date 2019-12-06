@@ -63,6 +63,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         submitBtn.setOnClickListener {
+/*
+            Initial textView Colors
+*/
+            timeCompletedTextView.setTextColor(getColor(R.color.black))
+            timeRemf9TextView.setTextColor(getColor(R.color.black))
+            timeRemf8TextView.setTextColor(getColor(R.color.black))
 
             hourLocal = LocalTime.now().hour
             minuteLocal = LocalTime.now().minute
