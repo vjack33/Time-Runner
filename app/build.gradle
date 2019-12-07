@@ -35,4 +35,5 @@ dependencies {
     //implementation 'joda-time:joda-time:2.10.5'
     implementation 'org.mozilla:rhino:1.7.7.1'
     implementation 'cat.inspiracio:rhino-js-engine:1.7.7.1'
+    implementation 'androidx.preference:preference:1.1.0'
 }
