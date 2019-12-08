@@ -1,9 +1,12 @@
 package com.example.myapplication
 
 import android.content.Context
+import android.content.SharedPreferences
 
 class Prefs(context: Context) {
-    private val prefsFileName = context.packageName
+    //private val prefsFileName = context.packageName
+    private val prefsFileName = "TEST"
+
     private val numberID = "number"
     private val pName = "NAME"
     private val pSunday = "SUNDAY"
@@ -20,7 +23,7 @@ class Prefs(context: Context) {
     private val pWeekHours = "WEEKHOURS"
     private val pWeekMinutes = "WEEKMINUTES"
 
-    private val prefs = context.getSharedPreferences(prefsFileName,0)
+    private val prefs : SharedPreferences = context.getSharedPreferences(prefsFileName,0)
 
     var number: Int
         get() = prefs.getInt(numberID,0)

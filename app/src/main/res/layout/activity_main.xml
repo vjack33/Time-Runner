@@ -23,22 +23,41 @@
         android:id="@+id/pickInTimeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select your In Time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.757"
-        app:layout_constraintStart_toEndOf="@+id/textViewInTime"
-        app:layout_constraintTop_toTopOf="@+id/textViewInTime" />
+        android:layout_marginTop="8dp"
+        android:text="In Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewInTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <Button
+        android:id="@+id/pickOutTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Out Time"
+        app:layout_constraintEnd_toEndOf="@+id/textViewOutTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
 
     <TextView
         android:id="@+id/textViewInTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="Time"
+        android:layout_marginBottom="124dp"
+        android:text="In Time"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewOutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="124dp"
+        android:text="Out Time"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/buttonSubmit"
@@ -161,11 +180,10 @@
         android:id="@+id/buttonSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="Setting"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textViewToday" />
 
     <TextView
         android:id="@+id/textViewToday"
@@ -174,6 +192,16 @@
         android:layout_marginTop="137dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonWeekDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Week Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/buttonSetting"
         app:layout_constraintTop_toTopOf="parent" />
 
 

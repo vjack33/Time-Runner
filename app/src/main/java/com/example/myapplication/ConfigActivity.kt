@@ -22,10 +22,10 @@ class ConfigActivity : AppCompatActivity() {
         prefs.number = 3
         Toast.makeText(this, test.toString(), Toast.LENGTH_SHORT).show()*/
 
-        //val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)            //Initialization of SharedPreferences for storing settings
+        val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)            //Initialization of SharedPreferences for storing settings
         // If Settings is NULL : When settings opened for first time
 
-        editTextConfigName.setText(prefs.prefsName)
+/*        editTextConfigName.setText(prefs.prefsName)
         checkBoxSunday.isChecked = prefs.prefsSunday
         checkBoxMonday.isChecked = prefs.prefsMonday
         checkBoxTuesday.isChecked = prefs.prefsTuesday
@@ -39,9 +39,9 @@ class ConfigActivity : AppCompatActivity() {
         editTextMinHours.setText(prefs.prefsMinHours)
         editTextMinMinutes.setText(prefs.prefsMinMinutes)
         editTextWeekHours.setText(prefs.prefsWeekHours)
-        editTextWeekMinutes.setText(prefs.prefsWeekMinutes)
+        editTextWeekMinutes.setText(prefs.prefsWeekMinutes)*/
 
-            /*editTextConfigName.setText(sharedPreferences.getString("NAME",""))
+            editTextConfigName.setText(sharedPreferences.getString("NAME",""))
             checkBoxSunday.isChecked = sharedPreferences.getBoolean("SUNDAY",false)
             checkBoxMonday.isChecked = sharedPreferences.getBoolean("MONDAY", false)
             checkBoxTuesday.isChecked = sharedPreferences.getBoolean("TUESDAY",false)
@@ -55,7 +55,7 @@ class ConfigActivity : AppCompatActivity() {
             editTextMinHours.setText(sharedPreferences.getString("MINHOURS",""))
             editTextMinMinutes.setText(sharedPreferences.getString("MINMINUTES",""))
             editTextWeekHours.setText(sharedPreferences.getString("WEEKHOURS",""))
-            editTextWeekMinutes.setText(sharedPreferences.getString("WEEKMINUTES",""))*/
+            editTextWeekMinutes.setText(sharedPreferences.getString("WEEKMINUTES",""))
 
 
         // Action to do on pressing the Save Button on Configuration screen
@@ -76,7 +76,7 @@ class ConfigActivity : AppCompatActivity() {
             val settingWeekHours = editTextWeekHours.text.toString()
             val settingWeekMinutes = editTextWeekMinutes.text.toString()
 
-            prefs.prefsName = settingName
+/*            prefs.prefsName = settingName
             prefs.prefsSunday = settingSunday
             prefs.prefsMonday = settingMonday
             prefs.prefsTuesday = settingTuesday
@@ -90,9 +90,9 @@ class ConfigActivity : AppCompatActivity() {
             prefs.prefsMinHours = settingMinHours
             prefs.prefsMinMinutes = settingMinMinutes
             prefs.prefsWeekHours = settingWeekHours
-            prefs.prefsWeekMinutes = settingWeekMinutes
+            prefs.prefsWeekMinutes = settingWeekMinutes*/
 
-       /*     val editor = sharedPreferences.edit()
+            val editor = sharedPreferences.edit()
             editor.putString("NAME",settingName)
             editor.putBoolean("SUNDAY", settingSunday)
             editor.putBoolean("MONDAY", settingMonday)
@@ -107,7 +107,7 @@ class ConfigActivity : AppCompatActivity() {
             editor.putString("MINMINUTES", settingMinMinutes)
             editor.putString("WEEKHOURS", settingWeekHours)
             editor.putString("WEEKMINUTES", settingWeekMinutes)
-            editor.apply()*/
+            editor.apply()
 
             //Start Main activity after saving the Configs
             val intent = Intent(this, MainActivity::class.java)
