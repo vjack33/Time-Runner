@@ -108,13 +108,12 @@ class MainActivity : AppCompatActivity() {
 
                 if (textViewInTime.text == "In Time") {
                     Toast.makeText(this@MainActivity, "Please select a In time.", Toast.LENGTH_SHORT).show()
-                } else if (textViewOutTime.text == "Out Time") {
-                    Toast.makeText(this@MainActivity, "Please select a Out time.", Toast.LENGTH_SHORT).show()
                 } else {
+
+
 /*
             Initial textView Colors
 */
-
                     timeCompletedTextView.setTextColor(getColor(R.color.black))
                     timeRemf9TextView.setTextColor(getColor(R.color.black))
                     timeRemf8TextView.setTextColor(getColor(R.color.black))
@@ -133,8 +132,15 @@ class MainActivity : AppCompatActivity() {
                         d1.plusHours(9)                                                             // Set Time plus 9 hr
                     var d4: LocalTime =
                         d1.plusHours(8)                                                             // Set Time plus 8 hr
-                    var d5: LocalTime =
-                        LocalTime.parse(textViewOutTime.text.toString())                                        // Parse Time selector text as OUT Time
+                    var d5: LocalTime = d1                                                                     // Set just as placeholder
+
+                    if (textViewOutTime.text == "Out Time") {
+                        Toast.makeText(this@MainActivity, "Out time not selected: Current time will be used as Out Time.", Toast.LENGTH_SHORT).show()
+                        textViewOutTime.text = d2.hour.toString() + ":" + d2.minute.toString()
+                        d5  = d2
+                    }else {
+                        d5 = LocalTime.parse(textViewOutTime.text.toString())                                        // Parse Time selector text as OUT Time
+                    }
 
                     if (d1 > d5) {
                         Toast.makeText(this@MainActivity, "Out Time can not be before In Time.", Toast.LENGTH_SHORT).show()

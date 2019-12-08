@@ -6,140 +6,140 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textViewMonday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mon"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewTuesday"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSunday" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textViewSunday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Sun"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMonday"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textViewTuesday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tue"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewWednesday"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMonday" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textViewThursday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thu"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewFriday"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWednesday" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textViewWednesday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wed"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewThursday"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTuesday" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/textViewFriday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fri"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewSaturday"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewThursday" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textViewSaturday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Sat"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFriday" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView18"
-        app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toTopOf="@+id/textView18" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSaturday"
+        app:layout_constraintStart_toEndOf="@+id/textViewSaturday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSaturday" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView17" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewFriday"
+        app:layout_constraintStart_toEndOf="@+id/textViewFriday"
+        app:layout_constraintTop_toTopOf="@+id/textViewFriday" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewThursday"
+        app:layout_constraintStart_toEndOf="@+id/textViewThursday"
+        app:layout_constraintTop_toTopOf="@+id/textViewThursday" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWednesday"
+        app:layout_constraintStart_toEndOf="@+id/textViewWednesday"
+        app:layout_constraintTop_toTopOf="@+id/textViewWednesday" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTuesday"
+        app:layout_constraintStart_toEndOf="@+id/textViewTuesday"
+        app:layout_constraintTop_toTopOf="@+id/textViewTuesday" />
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSunday"
+        app:layout_constraintStart_toEndOf="@+id/textViewSunday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
 
     <TextView
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMonday"
+        app:layout_constraintStart_toEndOf="@+id/textViewMonday"
+        app:layout_constraintTop_toTopOf="@+id/textViewMonday" />
 
     <TextView
         android:id="@+id/textView26"
