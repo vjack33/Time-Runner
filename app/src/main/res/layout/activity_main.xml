@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <!--
     <Button
@@ -63,9 +63,22 @@
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ButtonTest"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="View"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonViewRemainingTime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonViewRemainingTime"
+        app:layout_constraintTop_toTopOf="@+id/buttonViewRemainingTime" />
+
+    <Button
+        android:id="@+id/buttonViewRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSubmit"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -93,9 +106,9 @@
         android:id="@+id/textViewHomeTimeCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp"
         android:text="HH"
-        app:layout_constraintStart_toEndOf="@+id/textViewTimeCompleted"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHomeMinTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <TextView
@@ -128,7 +141,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         android:text="Remaining for 8hr(HH:mm): "
         app:layout_constraintBottom_toTopOf="@+id/textViewInTime"
         app:layout_constraintStart_toStartOf="@+id/textView1" />
@@ -151,13 +164,11 @@
 
     <TextView
         android:id="@+id/textViewHomeMinTimeCompleted"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:text="MM"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewHomeTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <TextView
@@ -180,19 +191,23 @@
         android:id="@+id/buttonSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
         android:text="Setting"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonWeekDetail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewToday" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonWeekDetail"
+        app:layout_constraintTop_toTopOf="@+id/buttonWeekDetail" />
 
     <TextView
         android:id="@+id/textViewToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="137dp"
-        android:text="TextView"
+        android:text="MONDAY"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonWeekDetail" />
 
     <Button
         android:id="@+id/buttonWeekDetail"
@@ -201,8 +216,20 @@
         android:layout_marginTop="24dp"
         android:text="Week Details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/buttonSetting"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSetting"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTodayDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="24-4-5955"
+        app:layout_constraintEnd_toEndOf="@+id/textViewToday"
+        app:layout_constraintStart_toStartOf="@+id/textViewToday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewToday" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

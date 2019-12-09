@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.Year
 import java.time.temporal.ChronoUnit
 import java.util.*
 
@@ -29,8 +30,13 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
 
 
+        val c = Calendar.getInstance()
+        var mYear = c[Calendar.YEAR]
+        var mMonth = c[Calendar.MONTH]
+        var mDay = c[Calendar.DAY_OF_MONTH]
 
-        textViewToday.text = LocalDate.now().dayOfWeek.toString()                                     // Get today's day eg: SUNDAY
+        textViewToday.text = LocalDate.now().dayOfWeek.toString()                                    // Get today's day eg: SUNDAY
+        textViewTodayDate.text = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()
         var todayDay = LocalDate.now().dayOfWeek.toString()
 
         val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                    // Select Time Button Init
@@ -102,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
         submitBtn.setOnClickListener {
 
-            if (sharedPreferences.getBoolean(todayDay,false) != true) {
+            if (sharedPreferences.getBoolean(todayDay,false) == true) {
                 Log.d("map values", "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
                 Toast.makeText(this@MainActivity, "ffffff.", Toast.LENGTH_SHORT).show()
 
@@ -204,8 +210,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else{
-                Log.d("RRR","TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
-                Toast.makeText(this@MainActivity, "ttttttttttt.", Toast.LENGTH_SHORT).show()
+                Log.d("Not Working day","Today is not your working day.")
+                Toast.makeText(this@MainActivity, "Today is not your working day.", Toast.LENGTH_SHORT).show()
             }
 
         }
