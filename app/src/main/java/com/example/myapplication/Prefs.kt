@@ -3,7 +3,7 @@ package com.example.myapplication
 import android.content.Context
 import android.content.SharedPreferences
 
-class Prefs(context: Context) {
+class   Prefs(context: Context) {
     //private val prefsFileName = context.packageName
     private val prefsFileName = "TEST"
 

@@ -57,6 +57,10 @@ class WeekDetailActivity :  AppCompatActivity() {
             var mMonth = c[Calendar.MONTH]
             var mDay = c[Calendar.DAY_OF_MONTH]
 
+            var mWeek = c[Calendar.WEEK_OF_YEAR]
+
+            Toast.makeText(this, "Yssss" + mWeek, Toast.LENGTH_SHORT).show()
+
 
             val datePickerDialog = DatePickerDialog(
                 this,
@@ -77,10 +81,16 @@ class WeekDetailActivity :  AppCompatActivity() {
             var dataDate = buttonDateSelectorWeekDetail.text.toString()
             var users = usersDBHelper.readUser(dataDate)
             users.forEach {
-                var tv_user = TextView(this)
-                tv_user.textSize = 30F
-                tv_user.text = it.dataDate.toString() + " - " + it.dataInTime.toString()
-                Toast.makeText(this, "You clicked me." + tv_user.text, Toast.LENGTH_SHORT).show()
+                //var tv_user = TextView(this)
+                //tv_user.textSize = 30F
+                //tv_user.text = it.dataDate.toString() + " - " + it.dataInTime.toString()
+                textViewInTimeFetched.text = it.dataInTime
+                textViewOutTimeFetched.text = it.dataOutTime
+                textViewTimeSpentFetched.text = it.dataTimeSpent
+                textViewRegFetched.text = it.dataReg
+                textViewLeaveFetched.text = it.dataLeave
+
+                //Toast.makeText(this, "You clicked me." + tv_user.text, Toast.LENGTH_SHORT).show()
                 //this.ll_entries.addView(tv_user)
             }
         }

@@ -13,6 +13,8 @@ object DBContract {
             val COLUMN_DATA_OUT_TIME = "dataOutTime"
             val COLUMN_DATA_TIME_SPENT = "dataTimeSpent"
             val COLUMN_DATA_REG = "dataReg"
+            val COLUMN_DATA_WEEK_OF_YEAR = "dataWeekOfYear"
+            val COLUMN_DATA_LEAVE = "dataLeave"
         }
     }
 }

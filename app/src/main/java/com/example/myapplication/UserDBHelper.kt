@@ -36,6 +36,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(DBContract.UserEntry.COLUMN_DATA_OUT_TIME, user.dataOutTime)
         values.put(DBContract.UserEntry.COLUMN_DATA_TIME_SPENT, user.dataTimeSpent)
         values.put(DBContract.UserEntry.COLUMN_DATA_REG, user.dataReg)
+        values.put(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR, user.dataWeekOfYear)
+        values.put(DBContract.UserEntry.COLUMN_DATA_LEAVE, user.dataLeave)
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -74,14 +76,18 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var dataOutTime: String
         var dataTimeSpent: String
         var dataReg: String
+        var dataWeekOfYear: String
+        var dataLeave: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 dataInTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_IN_TIME))
                 dataOutTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_OUT_TIME))
                 dataTimeSpent = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_TIME_SPENT))
                 dataReg = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_REG))
+                dataWeekOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR))
+                dataLeave = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_LEAVE))
 
-                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg))
+                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave))
                 cursor.moveToNext()
             }
         }
@@ -104,6 +110,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var dataOutTime: String
         var dataTimeSpent: String
         var dataReg: String
+        var dataWeekOfYear: String
+        var dataLeave: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 dataDate = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_DATE))
@@ -111,8 +119,10 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 dataOutTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_OUT_TIME))
                 dataTimeSpent = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_TIME_SPENT))
                 dataReg = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_REG))
+                dataWeekOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR))
+                dataLeave = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_LEAVE))
 
-                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg))
+                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave))
                 cursor.moveToNext()
             }
         }
@@ -130,7 +140,9 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     DBContract.UserEntry.COLUMN_DATA_IN_TIME + " TEXT," +
                     DBContract.UserEntry.COLUMN_DATA_OUT_TIME + " TEXT," +
                     DBContract.UserEntry.COLUMN_DATA_TIME_SPENT + " TEXT," +
-                    DBContract.UserEntry.COLUMN_DATA_REG + " TEXT)"
+                    DBContract.UserEntry.COLUMN_DATA_REG + " TEXT," +
+                    DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR + " TEXT," +
+                    DBContract.UserEntry.COLUMN_DATA_LEAVE + " TEXT)"
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.UserEntry.TABLE_NAME
     }

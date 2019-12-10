@@ -234,7 +234,10 @@ class MainActivity : AppCompatActivity() {
             var dataOutTime = textViewOutTime.text.toString()
             var dataTimeSpent = "96"
             var dataReg = "1"
-            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
+            var dataWeekOfYear = "2"
+            var dataLeave = "3"
+
+            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg, dataWeekOfYear = dataWeekOfYear, dataLeave = dataLeave))
             //val result = usersDBHelper.deleteUser(userid)
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
         }
