@@ -129,6 +129,43 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return users
     }
 
+
+    fun readTimeCompleted(dataWeekOfYear: String): Int {
+        val users = ArrayList<UserModel>()
+        val db = writableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery("select " + DBContract.UserEntry.COLUMN_DATA_TIME_SPENT + " from " + DBContract.UserEntry.TABLE_NAME + " WHERE " + DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR + "='" + dataWeekOfYear + "'", null)
+        } catch (e: SQLiteException) {
+            // if table not yet present, create it
+            db.execSQL(SQL_CREATE_ENTRIES)
+            //return ArrayList()
+        }
+
+        var tempTime = 0
+        var dataInTime: String
+        var dataOutTime: String
+        var dataTimeSpent: String
+        var dataReg: String
+        var dataWeekOfYear: String
+        var dataLeave: String
+        if (cursor!!.moveToFirst()) {
+            while (cursor.isAfterLast == false) {
+                tempTime = tempTime + cursor.getInt(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_TIME_SPENT))
+               /* dataInTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_IN_TIME))
+                dataOutTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_OUT_TIME))
+                dataTimeSpent = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_TIME_SPENT))
+                dataReg = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_REG))
+                dataWeekOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR))
+                dataLeave = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_LEAVE))
+
+                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave))*/
+                cursor.moveToNext()
+            }
+        }
+        return tempTime
+    }
+
     companion object {
         // If you change the database schema, you must increment the database version.
         val DATABASE_VERSION = 1

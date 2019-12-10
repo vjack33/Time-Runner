@@ -61,20 +61,25 @@ class ConfigActivity : AppCompatActivity() {
         // Action to do on pressing the Save Button on Configuration screen
         buttonConfigSave.setOnClickListener {
 
-            val settingName = editTextConfigName.text.toString()
-            val settingSunday = checkBoxSunday.isChecked
-            val settingMonday = checkBoxMonday.isChecked
-            val settingTuesday = checkBoxTuesday.isChecked
-            val settingWednesday = checkBoxWednesday.isChecked
-            val settingThursday = checkBoxThursday.isChecked
-            val settingFriday = checkBoxFriday.isChecked
-            val settingSaturday = checkBoxSaturday.isChecked
-            val settingMaxHours = editTextMaxHours.text.toString()
-            val settingMaxMinutes = editTextMaxMinutes.text.toString()
-            val settingMinHours = editTextMinHours.text.toString()
-            val settingMinMinutes = editTextMinMinutes.text.toString()
-            val settingWeekHours = editTextWeekHours.text.toString()
-            val settingWeekMinutes = editTextWeekMinutes.text.toString()
+            var settingName = editTextConfigName.text.toString()
+            var settingSunday = checkBoxSunday.isChecked
+            var settingMonday = checkBoxMonday.isChecked
+            var settingTuesday = checkBoxTuesday.isChecked
+            var settingWednesday = checkBoxWednesday.isChecked
+            var settingThursday = checkBoxThursday.isChecked
+            var settingFriday = checkBoxFriday.isChecked
+            var settingSaturday = checkBoxSaturday.isChecked
+            var settingMaxHours = editTextMaxHours.text.toString()
+            var settingMaxMinutes = editTextMaxMinutes.text.toString()
+            var settingMinHours = editTextMinHours.text.toString()
+            var settingMinMinutes = editTextMinMinutes.text.toString()
+            var settingWeekHours = editTextWeekHours.text.toString()
+            var settingWeekMinutes = editTextWeekMinutes.text.toString()
+
+            var settingMaxAllMinutes : Int = editTextMaxHours.text.toString().toInt() * 60 + editTextMaxMinutes.text.toString().toInt()
+            var settingMinAllMinutes : Int = editTextMinHours.text.toString().toInt() * 60 + editTextMinMinutes.text.toString().toInt()
+            var settingWeekAllMinutes : Int = editTextWeekHours.text.toString().toInt() * 60 + editTextWeekMinutes.text.toString().toInt()
+
 
 /*            prefs.prefsName = settingName
             prefs.prefsSunday = settingSunday
@@ -103,10 +108,13 @@ class ConfigActivity : AppCompatActivity() {
             editor.putBoolean("SATURDAY", settingSaturday)
             editor.putString("MAXHOURS", settingMaxHours)
             editor.putString("MAXMINUTES", settingMaxMinutes)
+            editor.putString("MAXALLMINUTES", settingMaxAllMinutes.toString())
             editor.putString("MINHOURS", settingMinHours)
             editor.putString("MINMINUTES", settingMinMinutes)
+            editor.putString("MINALLMINUTES", settingMinAllMinutes.toString())
             editor.putString("WEEKHOURS", settingWeekHours)
             editor.putString("WEEKMINUTES", settingWeekMinutes)
+            editor.putString("WEEKALLMINUTES", settingWeekAllMinutes.toString())
             editor.apply()
 
             //Start Main activity after saving the Configs

@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         var minuteSetOut : Int? = null
         var hourLocal : Int? = null
         var minuteLocal : Int? = null
+
+        var publicD1 : LocalTime? = null
+        var publicD2 : LocalTime? = null
+        //var publicMWeek = c[Calendar.WEEK_OF_YEAR]
 /*
          IN Time Picker logic
 */
@@ -131,15 +135,14 @@ class MainActivity : AppCompatActivity() {
             Initializing the four different time values for many states
 */
 
-                    var d1: LocalTime =
-                        LocalTime.parse(textViewInTime.text.toString())                                        // Parse Time selector text as IN Time
-                    var d2: LocalTime =
-                        LocalTime.now()                                                                        // Get local time from device
-                    var d3: LocalTime =
-                        d1.plusHours(9)                                                             // Set Time plus 9 hr
-                    var d4: LocalTime =
-                        d1.plusHours(8)                                                             // Set Time plus 8 hr
-                    var d5: LocalTime = d1                                                                     // Set just as placeholder
+                    var d1: LocalTime = LocalTime.parse(textViewInTime.text.toString())                                        // Parse Time selector text as IN Time
+                    var d2: LocalTime = LocalTime.now()                                                                        // Get local time from device
+                    var d3: LocalTime = d1.plusHours(9)                                                             // Set Time plus 9 hr
+                    var d4: LocalTime = d1.plusHours(8)                                                             // Set Time plus 8 hr
+                    var d5: LocalTime = d1                                                                      // Set just as placeholder
+
+                    publicD1 = d1
+                    publicD2 = d2
 
                     if (textViewOutTime.text == "Out Time") {
                         Toast.makeText(this@MainActivity, "Out time not selected: Current time will be used as Out Time.", Toast.LENGTH_SHORT).show()
@@ -232,9 +235,9 @@ class MainActivity : AppCompatActivity() {
             var dataDate = textViewTodayDate.text.toString()
             var dataInTime = textViewInTime.text.toString()
             var dataOutTime = textViewOutTime.text.toString()
-            var dataTimeSpent = "96"
+            var dataTimeSpent = ChronoUnit.MINUTES.between(publicD1, publicD2).toString()
             var dataReg = "1"
-            var dataWeekOfYear = "2"
+            var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
             var dataLeave = "3"
 
             var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg, dataWeekOfYear = dataWeekOfYear, dataLeave = dataLeave))

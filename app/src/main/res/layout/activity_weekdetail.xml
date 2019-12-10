@@ -165,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/textViewRecapCompletedTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -175,11 +175,11 @@
 
     <!-- Add CalenderView to display the Calender -->
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/textViewRecapTotalTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="45 hrs 00 Min"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintStart_toStartOf="@+id/textViewRecapCompletedTime"
         app:layout_constraintTop_toTopOf="@+id/textView28" />
 
     <TextView
@@ -205,11 +205,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/textViewRecapRemainingTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5 hrs 40 min"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintStart_toStartOf="@+id/textViewRecapCompletedTime"
         app:layout_constraintTop_toTopOf="@+id/textView30" />
 
     <TextView
