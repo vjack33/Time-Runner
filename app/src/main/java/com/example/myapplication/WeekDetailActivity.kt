@@ -89,31 +89,22 @@ class WeekDetailActivity :  AppCompatActivity() {
             )
             datePickerDialog.show()
 
-
-            //var result = usersDBHelper.readUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
-
         }
 
         buttonFetchDetailsWeek.setOnClickListener {
             var dataDate = buttonDateSelectorWeekDetail.text.toString()
             var users = usersDBHelper.readUser(dataDate)
             users.forEach {
-                //var tv_user = TextView(this)
-                //tv_user.textSize = 30F
-                //tv_user.text = it.dataDate.toString() + " - " + it.dataInTime.toString()
+
                 textViewInTimeFetched.text = it.dataInTime
                 textViewOutTimeFetched.text = it.dataOutTime
                 textViewTimeSpentFetched.text = it.dataTimeSpent
                 textViewRegFetched.text = it.dataReg
                 textViewLeaveFetched.text = it.dataLeave
 
-                //Toast.makeText(this, "You clicked me." + tv_user.text, Toast.LENGTH_SHORT).show()
-                //this.ll_entries.addView(tv_user)
             }
         }
 
-
     }
-
 
 }

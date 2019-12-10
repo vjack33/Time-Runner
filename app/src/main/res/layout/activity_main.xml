@@ -64,14 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonSaveWeek"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSaveTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonSaveWeek"
-        app:layout_constraintTop_toTopOf="@+id/buttonSaveWeek" />
+        app:layout_constraintStart_toEndOf="@+id/buttonSaveTime"
+        app:layout_constraintTop_toTopOf="@+id/buttonSaveTime" />
 
     <Button
-        android:id="@+id/buttonSaveWeek"
+        android:id="@+id/buttonSaveTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

@@ -17,30 +17,9 @@ class ConfigActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config)
 
-
-        /*var test = prefs
-        prefs.number = 3
-        Toast.makeText(this, test.toString(), Toast.LENGTH_SHORT).show()*/
-
-        val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)            //Initialization of SharedPreferences for storing settings
-        // If Settings is NULL : When settings opened for first time
-
-/*        editTextConfigName.setText(prefs.prefsName)
-        checkBoxSunday.isChecked = prefs.prefsSunday
-        checkBoxMonday.isChecked = prefs.prefsMonday
-        checkBoxTuesday.isChecked = prefs.prefsTuesday
-        checkBoxWednesday.isChecked = prefs.prefsWednesday
-        checkBoxThursday.isChecked = prefs.prefsThursday
-        checkBoxFriday.isChecked = prefs.prefsFriday
-        checkBoxSaturday.isChecked = prefs.prefsSaturday
-
-        editTextMaxHours.setText(prefs.prefsMaxHours)
-        editTextMaxMinutes.setText(prefs.prefsMaxMinutes)
-        editTextMinHours.setText(prefs.prefsMinHours)
-        editTextMinMinutes.setText(prefs.prefsMinMinutes)
-        editTextWeekHours.setText(prefs.prefsWeekHours)
-        editTextWeekMinutes.setText(prefs.prefsWeekMinutes)*/
-
+        //Initialization of SharedPreferences for storing settings
+        val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
+            // Saving Weekdays to SharedPreferences
             editTextConfigName.setText(sharedPreferences.getString("NAME",""))
             checkBoxSunday.isChecked = sharedPreferences.getBoolean("SUNDAY",false)
             checkBoxMonday.isChecked = sharedPreferences.getBoolean("MONDAY", false)
@@ -50,6 +29,7 @@ class ConfigActivity : AppCompatActivity() {
             checkBoxFriday.isChecked = sharedPreferences.getBoolean("FRIDAY",false)
             checkBoxSaturday.isChecked = sharedPreferences.getBoolean("SATURDAY", false)
 
+            // Saving Config values to SharedPreferences
             editTextMaxHours.setText(sharedPreferences.getString("MAXHOURS",""))
             editTextMaxMinutes.setText(sharedPreferences.getString("MAXMINUTES", ""))
             editTextMinHours.setText(sharedPreferences.getString("MINHOURS",""))
@@ -57,10 +37,10 @@ class ConfigActivity : AppCompatActivity() {
             editTextWeekHours.setText(sharedPreferences.getString("WEEKHOURS",""))
             editTextWeekMinutes.setText(sharedPreferences.getString("WEEKMINUTES",""))
 
-
-        // Action to do on pressing the Save Button on Configuration screen
+        // Action to do on pressing the "Save Button" on Configuration screen
         buttonConfigSave.setOnClickListener {
 
+            // Getting user applied settings from the respective fields
             var settingName = editTextConfigName.text.toString()
             var settingSunday = checkBoxSunday.isChecked
             var settingMonday = checkBoxMonday.isChecked
@@ -69,6 +49,7 @@ class ConfigActivity : AppCompatActivity() {
             var settingThursday = checkBoxThursday.isChecked
             var settingFriday = checkBoxFriday.isChecked
             var settingSaturday = checkBoxSaturday.isChecked
+
             var settingMaxHours = editTextMaxHours.text.toString()
             var settingMaxMinutes = editTextMaxMinutes.text.toString()
             var settingMinHours = editTextMinHours.text.toString()
@@ -80,23 +61,7 @@ class ConfigActivity : AppCompatActivity() {
             var settingMinAllMinutes : Int = editTextMinHours.text.toString().toInt() * 60 + editTextMinMinutes.text.toString().toInt()
             var settingWeekAllMinutes : Int = editTextWeekHours.text.toString().toInt() * 60 + editTextWeekMinutes.text.toString().toInt()
 
-
-/*            prefs.prefsName = settingName
-            prefs.prefsSunday = settingSunday
-            prefs.prefsMonday = settingMonday
-            prefs.prefsTuesday = settingTuesday
-            prefs.prefsWednesday = settingWednesday
-            prefs.prefsThursday = settingThursday
-            prefs.prefsFriday = settingFriday
-            prefs.prefsSaturday = settingSaturday
-
-            prefs.prefsMaxHours = settingMaxHours
-            prefs.prefsMaxMinutes = settingMaxMinutes
-            prefs.prefsMinHours = settingMinHours
-            prefs.prefsMinMinutes = settingMinMinutes
-            prefs.prefsWeekHours = settingWeekHours
-            prefs.prefsWeekMinutes = settingWeekMinutes*/
-
+            // Pushing all collected config to SharedPreference
             val editor = sharedPreferences.edit()
             editor.putString("NAME",settingName)
             editor.putBoolean("SUNDAY", settingSunday)

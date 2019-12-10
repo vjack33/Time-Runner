@@ -23,39 +23,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var usersDBHelper = UsersDBHelper(this)
+        var usersDBHelper = UsersDBHelper(this)                                                      // Init DB Helper class
+        val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)                 // Init SharedPreference
 
-/*
-        Initialization of every TextView and Buttons
-*/
-        val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
-
-
-        val c = Calendar.getInstance()
+        val c = Calendar.getInstance()                                                                      // Init Calender Object c
         var mYear = c[Calendar.YEAR]
         var mMonth = c[Calendar.MONTH]
         var mDay = c[Calendar.DAY_OF_MONTH]
 
-        textViewToday.text = LocalDate.now().dayOfWeek.toString()                                    // Get today's day eg: SUNDAY
-        textViewTodayDate.text = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()
-        var todayDay = LocalDate.now().dayOfWeek.toString()
-
-        val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                    // Select Time Button Init
-        val mPickOutTimeBtn = findViewById<Button>(R.id.pickOutTimeBtn)
-        val textViewInTime = findViewById<TextView>(R.id.textViewInTime)                                // Main Time Entry Text Init
-        val submitBtn = findViewById<Button>(R.id.buttonViewRemTime)                                         // Submit Button Init
-
-        val timeCompletedTextView = findViewById<TextView>(R.id.textViewTimeCompleted)                  // L1 : Completed Time hr:min view
-        val timeCompletedHomeTextView = findViewById<TextView>(R.id.textViewHomeTimeCompleted)          // L1 : Completed final time HH view
-        val timeCompletedHomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeCompleted)    // L1 : Completed final time MM view
-
-        val timeRemf9TextView = findViewById<TextView>(R.id.textViewTimeRemf9)                          // L2 : Remaining Time for 9hr hr:min view
-        val timeRemf9HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf9)                  // L2 : Remaining final time for 9hr HH view
-        val timeRemf9HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf9)            // L2 : Remaining final time for 9hr MM view
-
-        val timeRemf8TextView = findViewById<TextView>(R.id.textViewTimeRemf8)                          // L3 : Remaining Time for 8hr hr:min view
-        val timeRemf8HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf8)                  // L3 : Remaining final time for 8hr HH view
-        val timeRemf8HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf8)            // L3 : Remaining final time for 8hr MM view
+        textViewToday.text = LocalDate.now().dayOfWeek.toString()                                           // Get today's day eg: SUNDAY
+        textViewTodayDate.text = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()     // Get today's date eg: 10-12-2019
+        var todayDay = LocalDate.now().dayOfWeek.toString()                                                 // Save Today as LocalDate
+        val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                       // Select In Time Button Init
+        val mPickOutTimeBtn = findViewById<Button>(R.id.pickOutTimeBtn)                                     // Select Out Time Button Init
+        val textViewInTime = findViewById<TextView>(R.id.textViewInTime)                                    // Main Time Entry Text Init
+        val viewButton = findViewById<Button>(R.id.buttonViewRemTime)                                        // Submit Button Init
+        val timeCompletedTextView = findViewById<TextView>(R.id.textViewTimeCompleted)                      // L1 : Completed Time hr:min view
+        val timeCompletedHomeTextView = findViewById<TextView>(R.id.textViewHomeTimeCompleted)              // L1 : Completed final time HH view
+        val timeCompletedHomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeCompleted)        // L1 : Completed final time MM view
+        val timeRemf9TextView = findViewById<TextView>(R.id.textViewTimeRemf9)                              // L2 : Remaining Time for 9hr hr:min view
+        val timeRemf9HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf9)                      // L2 : Remaining final time for 9hr HH view
+        val timeRemf9HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf9)                // L2 : Remaining final time for 9hr MM view
+        val timeRemf8TextView = findViewById<TextView>(R.id.textViewTimeRemf8)                              // L3 : Remaining Time for 8hr hr:min view
+        val timeRemf8HomeTextView = findViewById<TextView>(R.id.textViewHomeTimeRemf8)                      // L3 : Remaining final time for 8hr HH view
+        val timeRemf8HomeMinTextView = findViewById<TextView>(R.id.textViewHomeMinTimeRemf8)                // L3 : Remaining final time for 8hr MM view
 
         var hourSet : Int? = null
         var minuteSet : Int? = null
@@ -66,20 +57,17 @@ class MainActivity : AppCompatActivity() {
 
         var publicD1 : LocalTime? = null
         var publicD2 : LocalTime? = null
-        //var publicMWeek = c[Calendar.WEEK_OF_YEAR]
-/*
-         IN Time Picker logic
-*/
 
+        // In Time Picker Logic
         mPickInTimeBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
 
-                textViewInTime.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format Set Time
-                hourSet = timePicker.hour
-                minuteSet = timePicker.minute
+                textViewInTime.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format In Time
+                hourSet = timePicker.hour                                                              // Save hours to variable
+                minuteSet = timePicker.minute                                                          // save Minutes to variable
             }
 
             TimePickerDialog(
@@ -91,13 +79,14 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
+        // Out Time Picker Logic
         mPickOutTimeBtn.setOnClickListener {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
 
-                textViewOutTime.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format Set Time
+                textViewOutTime.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format Out Time
                 hourSetOut = timePicker.hour
                 minuteSetOut = timePicker.minute
             }
@@ -111,69 +100,61 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        submitBtn.setOnClickListener {
+        // OnClick "VIEW" Button on main activity
+        viewButton.setOnClickListener {
 
-            if (sharedPreferences.getBoolean(todayDay,false) == true) {
-                Log.d("map values", "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF")
-                Toast.makeText(this@MainActivity, "ffffff.", Toast.LENGTH_SHORT).show()
+            if (sharedPreferences.getBoolean(todayDay,false) == true) {                                             // Check if today is working day from SharedPreferences
 
-                if (textViewInTime.text == "In Time") {
+                if (textViewInTime.text == "In Time") {                                                                     // Check if there is any time set in "IN TIME"
                     Toast.makeText(this@MainActivity, "Please select a In time.", Toast.LENGTH_SHORT).show()
                 } else {
 
-
-/*
-            Initial textView Colors
-*/
+                    // Initial textView Colors
                     timeCompletedTextView.setTextColor(getColor(R.color.black))
                     timeRemf9TextView.setTextColor(getColor(R.color.black))
                     timeRemf8TextView.setTextColor(getColor(R.color.black))
 
                     hourLocal = LocalTime.now().hour
                     minuteLocal = LocalTime.now().minute
-/*
-            Initializing the four different time values for many states
-*/
 
+                    // Initializing the four different time values for many states
                     var d1: LocalTime = LocalTime.parse(textViewInTime.text.toString())                                        // Parse Time selector text as IN Time
                     var d2: LocalTime = LocalTime.now()                                                                        // Get local time from device
                     var d3: LocalTime = d1.plusHours(9)                                                             // Set Time plus 9 hr
                     var d4: LocalTime = d1.plusHours(8)                                                             // Set Time plus 8 hr
-                    var d5: LocalTime = d1                                                                      // Set just as placeholder
+                    var d5: LocalTime = d1                                                                                     // Set just as placeholder
 
-                    publicD1 = d1
-                    publicD2 = d2
+                    publicD1 = d1                                                                                              // save value public
+                    publicD2 = d2                                                                                              //save value public
 
                     if (textViewOutTime.text == "Out Time") {
                         Toast.makeText(this@MainActivity, "Out time not selected: Current time will be used as Out Time.", Toast.LENGTH_SHORT).show()
                         textViewOutTime.text = d2.hour.toString() + ":" + d2.minute.toString()
                         d5  = d2
                     }else {
-                        d5 = LocalTime.parse(textViewOutTime.text.toString())                                        // Parse Time selector text as OUT Time
+                        d5 = LocalTime.parse(textViewOutTime.text.toString())                                                   // Parse Time selector text as OUT Time
                     }
 
                     if (d1 > d5) {
                         Toast.makeText(this@MainActivity, "Out Time can not be before In Time.", Toast.LENGTH_SHORT).show()
                     }
 
-                    if (d5 < d2){                                                                              // Swap Out time with current Localtime if Already left
+                    if (d5 < d2){                                                                                                // Swap Out time with current Localtime if Already left
                         d2 = d5
                         Toast.makeText(this@MainActivity, "Swappped.", Toast.LENGTH_SHORT).show()
                     }
 
-/*
-            Print all TextViews Here with logic
-*/
-                    var diffCompleted: Int = ChronoUnit.MINUTES.between(d1, d2).toInt()
-                    var completedHours = diffCompleted / 60 //since both are ints, you get an int
-                    var completedMinutes = diffCompleted % 60
+
+                    var diffCompleted: Int = ChronoUnit.MINUTES.between(d1, d2).toInt()  // Calculate difference between "In TIme" and "Current Time"
+                    var completedHours = diffCompleted / 60                              // Convert Difference to Hours
+                    var completedMinutes = diffCompleted % 60                            // Convert Difference to Minutes
 
                     timeCompletedTextView.text =
-                        completedHours.toString() + "hr " + completedMinutes.toString() + "min"        // Print Completed time: (d2 - d1)
+                        completedHours.toString() + "hr " + completedMinutes.toString() + "min"         // Print Completed time: (d2 - d1)
                     timeCompletedHomeTextView.text =
-                        d2.hour.toString()                                                        // Print System current time: LocalTime HH
+                        d2.hour.toString()                                                              // Print System current time: LocalTime HH
                     timeCompletedHomeMinTextView.text =
-                        d2.minute.toString()                                                   // Print System Completed time current time: LocalTime MM
+                        d2.minute.toString()                                                            // Print System Completed time current time: LocalTime MM
 
                     var diffRem9: Int = ChronoUnit.MINUTES.between(d2, d3).toInt()
                     var rem9Hours = diffRem9 / 60
@@ -182,9 +163,9 @@ class MainActivity : AppCompatActivity() {
                     timeRemf9TextView.text =
                         rem9Hours.toString() + "hr " + rem9Minuutes.toString() + "min"                     // Print Remaining time for 9hr: (d3 - d2)
                     timeRemf9HomeTextView.text =
-                        d3.hour.toString()                                                            // Print Final time for 9hr: d1 + 9hr HH
+                        d3.hour.toString()                                                                 // Print Final time for 9hr: d1 + 9hr HH
                     timeRemf9HomeMinTextView.text =
-                        d3.minute.toString()                                                       // Print Final time for 9hr: d1 + 9hr MM
+                        d3.minute.toString()                                                               // Print Final time for 9hr: d1 + 9hr MM
 
                     var diffRem8: Int = ChronoUnit.MINUTES.between(d2, d4).toInt()
                     var rem8Hours = diffRem8 / 60
@@ -193,9 +174,9 @@ class MainActivity : AppCompatActivity() {
                     timeRemf8TextView.text =
                         rem8Hours.toString() + "hr " + rem8Minutes.toString() + "min"                      // Print Remaining time for 8hr: (d4 - d2)
                     timeRemf8HomeTextView.text =
-                        d4.hour.toString()                                                            // Print Final time for 8hr: d1 + 8hr HH
+                        d4.hour.toString()                                                                 // Print Final time for 8hr: d1 + 8hr HH
                     timeRemf8HomeMinTextView.text =
-                        d4.minute.toString()                                                       // Print Final time for 8hr: d1 + 8hr MM
+                        d4.minute.toString()                                                               // Print Final time for 8hr: d1 + 8hr MM
 /*
             Change color of TextView when completed the time
 */
@@ -231,17 +212,20 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        buttonSaveWeek.setOnClickListener {
+        buttonSaveTime.setOnClickListener {
             var dataDate = textViewTodayDate.text.toString()
             var dataInTime = textViewInTime.text.toString()
             var dataOutTime = textViewOutTime.text.toString()
             var dataTimeSpent = ChronoUnit.MINUTES.between(publicD1, publicD2).toString()
+
+            if(dataTimeSpent.toInt() > 570)
+                dataTimeSpent = "570"
+
             var dataReg = "1"
             var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
             var dataLeave = "3"
 
             var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg, dataWeekOfYear = dataWeekOfYear, dataLeave = dataLeave))
-            //val result = usersDBHelper.deleteUser(userid)
             Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
         }
 
