@@ -4,7 +4,9 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_weekdetail.*
 import java.util.*
 
@@ -12,6 +14,8 @@ class WeekDetailActivity :  AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weekdetail)
+
+        var usersDBHelper = UsersDBHelper(this)
 
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)            //Initialization of SharedPreferences for storing settings
 
@@ -62,6 +66,14 @@ class WeekDetailActivity :  AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
+        /*buttonSaveWeek.setOnClickListener {
+            var userid = "Test User"
+            var name = "Test Name"
+            var age = "Test Age"
+            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
+            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
+        }*/
 
     }
 }

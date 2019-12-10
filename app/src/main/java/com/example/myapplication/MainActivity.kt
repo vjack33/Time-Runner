@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
-import java.time.Year
 import java.time.temporal.ChronoUnit
 import java.util.*
 
@@ -23,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var usersDBHelper = UsersDBHelper(this)
 
 /*
         Initialization of every TextView and Buttons
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                    // Select Time Button Init
         val mPickOutTimeBtn = findViewById<Button>(R.id.pickOutTimeBtn)
         val textViewInTime = findViewById<TextView>(R.id.textViewInTime)                                // Main Time Entry Text Init
-        val submitBtn = findViewById<Button>(R.id.buttonSubmit)                                         // Submit Button Init
+        val submitBtn = findViewById<Button>(R.id.buttonViewRemTime)                                         // Submit Button Init
 
         val timeCompletedTextView = findViewById<TextView>(R.id.textViewTimeCompleted)                  // L1 : Completed Time hr:min view
         val timeCompletedHomeTextView = findViewById<TextView>(R.id.textViewHomeTimeCompleted)          // L1 : Completed final time HH view
@@ -227,7 +228,19 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        buttonSaveWeek.setOnClickListener {
+            var dataDate = textViewTodayDate.text.toString()
+            var dataInTime = textViewInTime.text.toString()
+            var dataOutTime = textViewOutTime.text.toString()
+            var dataTimeSpent = "96"
+            var dataReg = "1"
+            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
+            //val result = usersDBHelper.deleteUser(userid)
+            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
+        }
+
     }
+
 
     override fun onBackPressed() {                                                                        // super.onBackPressed(); commented this line in order to disable back press
         Toast.makeText(applicationContext, "Back press disabled!", Toast.LENGTH_SHORT).show()
