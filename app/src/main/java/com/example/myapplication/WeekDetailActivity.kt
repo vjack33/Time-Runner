@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -65,15 +67,26 @@ class WeekDetailActivity :  AppCompatActivity() {
                 }, mYear, mMonth, mDay
             )
             datePickerDialog.show()
+
+
+            //var result = usersDBHelper.readUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
+
         }
 
-        /*buttonSaveWeek.setOnClickListener {
-            var userid = "Test User"
-            var name = "Test Name"
-            var age = "Test Age"
-            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg))
-            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
-        }*/
+        buttonFetchDetailsWeek.setOnClickListener {
+            var dataDate = buttonDateSelectorWeekDetail.text.toString()
+            var users = usersDBHelper.readUser(dataDate)
+            users.forEach {
+                var tv_user = TextView(this)
+                tv_user.textSize = 30F
+                tv_user.text = it.dataDate.toString() + " - " + it.dataInTime.toString()
+                Toast.makeText(this, "You clicked me." + tv_user.text, Toast.LENGTH_SHORT).show()
+                //this.ll_entries.addView(tv_user)
+            }
+        }
+
 
     }
+
+
 }
