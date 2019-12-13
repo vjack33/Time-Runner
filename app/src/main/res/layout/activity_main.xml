@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+    <Button
+        android:id="@+id/pickOutTimeBtn"
+        android:text="Pick Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textViewOutTime"
+        android:text="Time"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+-->
+
+    <Button
+        android:id="@+id/pickInTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="In Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewInTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <Button
+        android:id="@+id/pickOutTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Out Time"
+        app:layout_constraintEnd_toEndOf="@+id/textViewOutTime"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+
+    <TextView
+        android:id="@+id/textViewInTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="124dp"
+        android:text="In Time"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonViewRemTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewOutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="124dp"
+        android:text="Out Time"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonViewRemTime"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonViewRemTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSaveTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonSaveTime"
+        app:layout_constraintTop_toTopOf="@+id/buttonSaveTime" />
+
+    <Button
+        android:id="@+id/buttonSaveTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:enabled="true"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonViewRemTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Completed(HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTimeCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Time"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
+
+
+    <TextView
+        android:id="@+id/textViewHomeTimeCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="HH"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHomeMinTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Remaining for 9hr (HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="Remaining for 8hr(HH:mm): "
+        app:layout_constraintBottom_toTopOf="@+id/textViewInTime"
+        app:layout_constraintStart_toStartOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewHomeMinTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MM"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeMinTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textViewHomeMinTimeCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="MM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textViewHomeMinTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MM"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeMinTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/buttonSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Setting"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonWeekDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonWeekDetail"
+        app:layout_constraintTop_toTopOf="@+id/buttonWeekDetail" />
+
+    <TextView
+        android:id="@+id/textViewToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MONDAY"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWeekDetail" />
+
+    <Button
+        android:id="@+id/buttonWeekDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Week Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTodayDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="24-4-5955"
+        app:layout_constraintEnd_toEndOf="@+id/textViewToday"
+        app:layout_constraintStart_toStartOf="@+id/textViewToday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewToday" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

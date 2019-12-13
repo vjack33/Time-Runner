@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewMonday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mon"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTuesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewSunday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textViewSunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Sun"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewMonday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tue"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewWednesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewMonday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textViewThursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thu"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewFriday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewWednesday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textViewWednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wed"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewThursday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewTuesday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textViewFriday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fri"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSaturday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewThursday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textViewSaturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sat"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewFriday"
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewSaturday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSaturday" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewFriday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFriday" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewThursday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewThursday" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewWednesday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWednesday" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewTuesday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTuesday" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSunday"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: "
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewMonday"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMonday" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Completed this week:"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Total Time this week:"
+        app:layout_constraintStart_toStartOf="@+id/textViewSunday"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textViewRecapCompletedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="39 hrs 20 min"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+    <!-- Add CalenderView to display the Calender -->
+    <TextView
+        android:id="@+id/textViewRecapTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="45 hrs 00 Min"
+        app:layout_constraintStart_toStartOf="@+id/textViewRecapCompletedTime"
+        app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/buttonDateSelectorWeekDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Select Date"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/buttonFetchDetailsWeek"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Remaining: "
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textViewRecapRemainingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 hrs 40 min"
+        app:layout_constraintStart_toStartOf="@+id/textViewRecapCompletedTime"
+        app:layout_constraintTop_toTopOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Yes, You can do it."
+        app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <Button
+        android:id="@+id/buttonFetchDetailsWeek"
+        android:layout_width="117dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="48dp"
+        android:text="Fetch Details"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonDateSelectorWeekDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonDateSelectorWeekDetail" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="In Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDateSelectorWeekDetail" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Out Time:"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Time Spent:"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Regularized: "
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textViewInTimeFetched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        app:layout_constraintStart_toStartOf="@+id/textViewRegFetched"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textViewOutTimeFetched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        app:layout_constraintStart_toStartOf="@+id/textViewRegFetched"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textViewTimeSpentFetched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        app:layout_constraintStart_toStartOf="@+id/textViewRegFetched"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textViewRegFetched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:text="00"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Leave:"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textViewLeaveFetched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        app:layout_constraintStart_toStartOf="@+id/textViewRegFetched"
+        app:layout_constraintTop_toTopOf="@+id/textView16" />
+
+    <Button
+        android:id="@+id/buttonWeekEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72dp"
+        android:text="EDIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditWeekApplyLeave" />
+
+    <Button
+        android:id="@+id/buttonEditWeekInTime"
+        android:layout_width="70dp"
+        android:layout_height="32dp"
+        android:text="In"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewEditedInTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewEditedInTime" />
+
+    <Button
+        android:id="@+id/buttonEditWeekOutTime"
+        android:layout_width="70dp"
+        android:layout_height="32dp"
+        android:text="Out"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewEditedOutTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewEditedOutTime" />
+
+    <TextView
+        android:id="@+id/textViewEditedInTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditWeekInTime"
+        app:layout_constraintStart_toEndOf="@+id/textViewInTimeFetched"
+        app:layout_constraintTop_toTopOf="@+id/textViewInTimeFetched" />
+
+    <TextView
+        android:id="@+id/textViewEditedOutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditWeekOutTime"
+        app:layout_constraintStart_toEndOf="@+id/textViewOutTimeFetched"
+        app:layout_constraintTop_toTopOf="@+id/textViewOutTimeFetched" />
+
+    <TextView
+        android:id="@+id/textViewEditedTimeSpent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/textViewEditedOutTime"
+        app:layout_constraintStart_toStartOf="@+id/textViewEditedOutTime"
+        app:layout_constraintTop_toTopOf="@+id/textViewTimeSpentFetched" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDateSelectorWeekDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <CheckBox
+        android:id="@+id/checkBoxEditWeekRegularize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regularize"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewRegFetched"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewRegFetched"
+        app:layout_constraintTop_toTopOf="@+id/textViewRegFetched" />
+
+    <Button
+        android:id="@+id/buttonEditWeekApplyLeave"
+        android:layout_width="114dp"
+        android:layout_height="35dp"
+        android:text="Apply Leave"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewLeaveFetched"
+        app:layout_constraintTop_toTopOf="@+id/textViewLeaveFetched" />
+
+    <Button
+        android:id="@+id/buttonEditWeekSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCancelWeekEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonEditWeekSave" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
