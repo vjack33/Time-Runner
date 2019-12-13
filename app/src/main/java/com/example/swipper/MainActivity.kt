@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,8 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 
 class   MainActivity : AppCompatActivity() {
@@ -119,6 +122,25 @@ class   MainActivity : AppCompatActivity() {
         var hourLocal : Int? = null
         var minuteLocal : Int? = null
 
+        if (sharedPreferences.getString("INTIME","") != ""){
+            textViewInTime.text = sharedPreferences.getString("INTIME","")
+            textViewOutTime.text = sharedPreferences.getString("OUTTIME","")
+            Toast.makeText(this@MainActivity, "IN", Toast.LENGTH_SHORT).show()
+            buttonViewRemTime.performClick()
+            val percentTimePassed : Int = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTime.text),LocalTime.now() ).toInt()
+            val percentTime : Int = ((percentTimePassed.toFloat() / 540) * 100).toInt()
+            progressBar.progress = percentTime
+            textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"
+            textViewProgressStart.text = textViewInTime.text
+
+            textViewProgressEnd.text = LocalTime.parse(textViewInTime.text).plusHours(9).toString()
+
+            Toast.makeText(this@MainActivity, percentTimePassed.toString() + " " + percentTime, Toast.LENGTH_SHORT).show()
+        }
+        Toast.makeText(this@MainActivity, "Out", Toast.LENGTH_SHORT).show()
+
+
+
         /*var publicD1 : LocalTime? = null
         var publicD2 : LocalTime? = null*/
 
@@ -194,6 +216,13 @@ class   MainActivity : AppCompatActivity() {
                     timeRemf9TextView.setTextColor(getColor(R.color.black))
                     timeRemf8TextView.setTextColor(getColor(R.color.black))
 
+                    var settingInTime = textViewInTime.text.toString()
+                    //var settingOutTime = textViewOutTime.text.toString()
+                    editor.putString("INTIME",settingInTime)
+                    //editor.putString("LocalTIME",settingOutTime)
+                    editor.apply()
+
+
                     hourLocal = LocalTime.now().hour
                     minuteLocal = LocalTime.now().minute
 
@@ -209,11 +238,11 @@ class   MainActivity : AppCompatActivity() {
 
                                                                             // Enable "SAVE" to database Button
 
-                    if (textViewOutTime.text == "Out Time") {
-                        Toast.makeText(this@MainActivity, "Out time not selected: Current time will be used as Out Time.", Toast.LENGTH_SHORT).show()
+                    if (textViewOutTime.text == "Out Time" || textViewOutTime.text == "") {
+                        Toast.makeText(this@MainActivity, "Out time not selected.", Toast.LENGTH_SHORT).show()
                         textViewOutTime.text = d2.hour.toString() + ":" + d2.minute.toString()
                         d5  = d2
-                    }else {
+                    } else {
                         d5 = LocalTime.parse(textViewOutTime.text.toString())                                                   // Parse Time selector text as OUT Time
                     }
 
@@ -319,6 +348,8 @@ class   MainActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "Back press disabled!", Toast.LENGTH_SHORT).show()
     }
 
+
+
     /*fun showPopUp(view: View) {
         val popupMenu = PopupMenu(this, view)
         val inflater = popupMenu.menuInflater
@@ -340,6 +371,7 @@ class   MainActivity : AppCompatActivity() {
             true
         }
     }*/
+
 
     private fun popUpEditText() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -377,4 +409,7 @@ class   MainActivity : AppCompatActivity() {
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         builder.show()
     }
+
+
+
 }
