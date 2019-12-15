@@ -15,6 +15,9 @@ object DBContract {
             val COLUMN_DATA_REG = "dataReg"
             val COLUMN_DATA_WEEK_OF_YEAR = "dataWeekOfYear"
             val COLUMN_DATA_LEAVE = "dataLeave"
+            val COLUMN_DATA_MONTH_OF_YEAR = "dataMonthOfYear"
+            val COLUMN_DATA_DAY_OF_WEEK = "dataDayOfWeek"
+
         }
     }
 }

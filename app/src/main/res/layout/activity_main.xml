@@ -5,20 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--
-    <Button
-        android:id="@+id/pickOutTimeBtn"
-        android:text="Pick Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/textViewOutTime"
-        android:text="Time"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
--->
-
     <Button
         android:id="@+id/pickInTimeBtn"
         android:layout_width="wrap_content"
@@ -237,9 +223,11 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:progress="10"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:progressTint="#D98238"
         app:layout_constraintBottom_toTopOf="@+id/textViewToday"
         app:layout_constraintEnd_toStartOf="@+id/textViewProgressEnd"
         app:layout_constraintStart_toEndOf="@+id/textViewProgressStart"
@@ -274,5 +262,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/circularProgressbar"
+        app:srcCompat="@drawable/start" />
+
+    <ProgressBar
+
+        android:id="@+id/circularProgressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="40"
+        android:progressDrawable="@drawable/circular"
+        android:secondaryProgress="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewTodayDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

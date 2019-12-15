@@ -92,6 +92,7 @@ class WeekDetailActivity :  AppCompatActivity() {
         // Total Time This week Logic
         //val c = Calendar.getInstance()
         var mWeek = c[Calendar.WEEK_OF_YEAR]
+        var mMonth = c[Calendar.MONTH]
         textViewRecapTotalTime.text = sharedPreferences.getString("WEEKHOURS","") + "hr " + sharedPreferences.getString("WEEKMINUTES","") + "min"
 
         // Completed This week
@@ -101,11 +102,13 @@ class WeekDetailActivity :  AppCompatActivity() {
         textViewRecapCompletedTime.text = weekHours.toString() +"hr "+ weekMinutes.toString() + "min"
 
         // Remaining Time Logic
-        var timeCompleted : Int = usersDBHelper.readTimeCompleted(mWeek.toString())
+        var timeCompleted : Int = usersDBHelper.readTimeCompleted(mMonth.toString())
         var totalRemainingTime: Int = ((sharedPreferences.getString("WEEKALLMINUTES","").toString().toInt() ) - timeCompleted).toString().toInt() // x + 360 = 210
         var remainingHours = totalRemainingTime / 60
         var remainingMinutes = totalRemainingTime % 60
         textViewRecapRemainingTime.text = remainingHours.toString() +"hr "+ remainingMinutes.toString() + "min"
+        textViewRecapRegularisations.text = usersDBHelper.getRegulariseMonth(mWeek.toString()).toString()
+        //Toast.makeText(this, "Please " +usersDBHelper.getProfilesCount().toString(), Toast.LENGTH_SHORT).show()
 
 
         buttonDateSelectorWeekDetail.setOnClickListener {
@@ -311,6 +314,8 @@ class WeekDetailActivity :  AppCompatActivity() {
                 var dataReg = "false"
                 var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
                 var dataLeave = "true"
+                var dataMonthOfYear = c[Calendar.MONTH].toString()
+                var dataDayOfWeek = c[Calendar.DAY_OF_WEEK].toString()
 
                 if(buttonDateSelectorWeekDetail.text == "Select Date"){
                     Toast.makeText(this, "Please select a Date first", Toast.LENGTH_SHORT).show()
@@ -327,7 +332,9 @@ class WeekDetailActivity :  AppCompatActivity() {
                             dataTimeSpent = dataTimeSpent,
                             dataReg = dataReg,
                             dataWeekOfYear = dataWeekOfYear,
-                            dataLeave = dataLeave
+                            dataLeave = dataLeave,
+                            dataMonthOfYear = dataMonthOfYear,
+                            dataDayOfWeek = dataDayOfWeek
                         )
                     )
                     Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
@@ -364,6 +371,8 @@ class WeekDetailActivity :  AppCompatActivity() {
                 var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
                 var dataLeave = "false"
                 var dataReg : String? =  null
+                var dataMonthOfYear = c[Calendar.MONTH].toString()
+                var dataDayOfWeek = c[Calendar.DAY_OF_WEEK].toString()
                 if(checkBoxEditWeekRegularize.isChecked){
                     dataReg = "true"
                 } else {
@@ -388,7 +397,9 @@ class WeekDetailActivity :  AppCompatActivity() {
                             dataTimeSpent = dataTimeSpent,
                             dataReg = dataReg,
                             dataWeekOfYear = dataWeekOfYear,
-                            dataLeave = dataLeave
+                            dataLeave = dataLeave,
+                            dataMonthOfYear = dataMonthOfYear,
+                            dataDayOfWeek = dataDayOfWeek
                         )
                     )
                     Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()

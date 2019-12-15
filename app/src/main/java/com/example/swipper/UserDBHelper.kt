@@ -38,6 +38,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         values.put(DBContract.UserEntry.COLUMN_DATA_REG, user.dataReg)
         values.put(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR, user.dataWeekOfYear)
         values.put(DBContract.UserEntry.COLUMN_DATA_LEAVE, user.dataLeave)
+        values.put(DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR, user.dataMonthOfYear)
+        values.put(DBContract.UserEntry.COLUMN_DATA_DAY_OF_WEEK, user.dataDayOfWeek)
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -78,6 +80,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var dataReg: String
         var dataWeekOfYear: String
         var dataLeave: String
+        var dataMonthOfYear: String
+        var dataDayOfWeek: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 dataInTime = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_IN_TIME))
@@ -86,8 +90,10 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 dataReg = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_REG))
                 dataWeekOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR))
                 dataLeave = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_LEAVE))
+                dataMonthOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR))
+                dataDayOfWeek = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_DAY_OF_WEEK))
 
-                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave))
+                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave, dataMonthOfYear, dataDayOfWeek))
                 cursor.moveToNext()
             }
         }
@@ -112,6 +118,8 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var dataReg: String
         var dataWeekOfYear: String
         var dataLeave: String
+        var dataMonthOfYear: String
+        var dataDayOfWeek: String
         if (cursor!!.moveToFirst()) {
             while (cursor.isAfterLast == false) {
                 dataDate = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_DATE))
@@ -121,8 +129,10 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 dataReg = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_REG))
                 dataWeekOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR))
                 dataLeave = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_LEAVE))
+                dataMonthOfYear = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR))
+                dataDayOfWeek = cursor.getString(cursor.getColumnIndex(DBContract.UserEntry.COLUMN_DATA_DAY_OF_WEEK))
 
-                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave))
+                users.add(UserModel(dataDate, dataInTime, dataOutTime, dataTimeSpent, dataReg, dataWeekOfYear, dataLeave, dataMonthOfYear, dataDayOfWeek))
                 cursor.moveToNext()
             }
         }
@@ -152,6 +162,25 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return tempTime
     }
 
+    //var dataWeekOfYear: String = "50"
+    fun getRegulariseMonth(dataWeekOfYear: String): Int {
+        val countQuery = "SELECT  * FROM " + DBContract.UserEntry.TABLE_NAME + " WHERE " + DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR + " = " + dataWeekOfYear + " AND " + DBContract.UserEntry.COLUMN_DATA_REG + " = 'true'"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(countQuery, null)
+        val count = cursor.count
+        cursor.close()
+        return count
+    }
+
+    fun getSundayWeek(dataWeekOfYear: String): Int {
+        val countQuery = "SELECT  * FROM " + DBContract.UserEntry.TABLE_NAME + " WHERE " + DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR + " = " + dataWeekOfYear + " AND " + DBContract.UserEntry.COLUMN_DATA_REG + " = 'true'"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(countQuery, null)
+        val count = cursor.count
+        cursor.close()
+        return count
+    }
+
     companion object {
         // If you change the database schema, you must increment the database version.
         val DATABASE_VERSION = 1
@@ -165,7 +194,9 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     DBContract.UserEntry.COLUMN_DATA_TIME_SPENT + " TEXT," +
                     DBContract.UserEntry.COLUMN_DATA_REG + " TEXT," +
                     DBContract.UserEntry.COLUMN_DATA_WEEK_OF_YEAR + " TEXT," +
-                    DBContract.UserEntry.COLUMN_DATA_LEAVE + " TEXT)"
+                    DBContract.UserEntry.COLUMN_DATA_LEAVE + " TEXT," +
+                    DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR + " TEXT," +
+                    DBContract.UserEntry.COLUMN_DATA_DAY_OF_WEEK + " TEXT)"
 
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.UserEntry.TABLE_NAME
     }

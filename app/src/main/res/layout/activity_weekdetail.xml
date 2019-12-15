@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Mon"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewTuesday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewSunday"
@@ -23,6 +24,7 @@
         android:layout_marginTop="32dp"
         android:text="Sun"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewMonday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Tue"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewWednesday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewMonday"
@@ -45,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="Thu"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewFriday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewWednesday"
@@ -59,7 +63,8 @@
         app:layout_constraintEnd_toStartOf="@+id/textViewThursday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewTuesday"
-        app:layout_constraintTop_toTopOf="@+id/textViewSunday" />
+        app:layout_constraintTop_toTopOf="@+id/textViewSunday"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textViewFriday"
@@ -67,6 +72,7 @@
         android:layout_height="wrap_content"
         android:text="Fri"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/textViewSaturday"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewThursday"
@@ -78,6 +84,7 @@
         android:layout_height="wrap_content"
         android:text="Sat"
         android:textSize="12sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewFriday"
@@ -89,6 +96,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewSaturday"
         app:layout_constraintTop_toBottomOf="@+id/textViewSaturday" />
 
@@ -98,6 +106,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewFriday"
         app:layout_constraintTop_toBottomOf="@+id/textViewFriday" />
 
@@ -107,6 +116,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewThursday"
         app:layout_constraintTop_toBottomOf="@+id/textViewThursday" />
 
@@ -116,6 +126,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewWednesday"
         app:layout_constraintTop_toBottomOf="@+id/textViewWednesday" />
 
@@ -125,6 +136,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewTuesday"
         app:layout_constraintTop_toBottomOf="@+id/textViewTuesday" />
 
@@ -133,9 +145,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: "
+        android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewSunday"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSunday"
-        android:textSize="10sp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSunday" />
 
     <TextView
         android:id="@+id/textView25"
@@ -143,6 +156,7 @@
         android:layout_height="wrap_content"
         android:text="Total: "
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewMonday"
         app:layout_constraintTop_toBottomOf="@+id/textViewMonday" />
 
@@ -218,6 +232,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Yes, You can do it."
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="@+id/textView30"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -423,6 +438,23 @@
         android:text="Cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonEditWeekSave" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Regularisations:"
+        app:layout_constraintStart_toStartOf="@+id/textView28"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textViewRecapRegularisations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regs"
+        app:layout_constraintStart_toStartOf="@+id/textViewRecapRemainingTime"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

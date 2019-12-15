@@ -18,6 +18,7 @@ class ConfigActivity : AppCompatActivity() {
 
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
+
         // Saving Weekdays to SharedPreferences
         editTextConfigName.setText(sharedPreferences.getString("NAME","TEST"))
         checkBoxSunday.isChecked = sharedPreferences.getBoolean("SUNDAY",false)
@@ -35,8 +36,6 @@ class ConfigActivity : AppCompatActivity() {
         editTextMinMinutes.setText(sharedPreferences.getString("MINMINUTES","00"))
         editTextWeekHours.setText(sharedPreferences.getString("WEEKHOURS","45"))
         editTextWeekMinutes.setText(sharedPreferences.getString("WEEKMINUTES","00"))
-
-
 
         // Action to do on pressing the "Save Button" on Configuration screen
         buttonConfigSave.setOnClickListener {

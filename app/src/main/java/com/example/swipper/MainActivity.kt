@@ -5,12 +5,14 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.marginTop
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
@@ -32,8 +34,9 @@ class   MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        hideAllViews()                                                                                  //For making all unnecessary INVISIBLE
 
-        buttonSaveTime.visibility = View.INVISIBLE
+        /*buttonSaveTime.visibility = View.INVISIBLE
         textView1.visibility = View.INVISIBLE
         textView2.visibility = View.INVISIBLE
         textView3.visibility = View.INVISIBLE
@@ -45,7 +48,7 @@ class   MainActivity : AppCompatActivity() {
         textViewHomeTimeRemf9.visibility = View.INVISIBLE
         textViewHomeMinTimeRemf9.visibility = View.INVISIBLE
         textViewHomeTimeRemf8.visibility = View.INVISIBLE
-        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE
+        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE*/
 
         //var usersDBHelper = UsersDBHelper(this)                                                      // Init DB Helper class
         //Initialization of SharedPreferences for storing settings
@@ -129,6 +132,10 @@ class   MainActivity : AppCompatActivity() {
             buttonViewRemTime.performClick()
             val percentTimePassed : Int = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTime.text),LocalTime.now() ).toInt()
             val percentTime : Int = ((percentTimePassed.toFloat() / 540) * 100).toInt()
+
+            //progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.red), PorterDuff.Mode.SRC_IN )
+
+
             progressBar.progress = percentTime
             textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"
             textViewProgressStart.text = textViewInTime.text
@@ -350,6 +357,21 @@ class   MainActivity : AppCompatActivity() {
 
 
 
+    private fun hideAllViews() {
+        buttonSaveTime.visibility = View.INVISIBLE
+        textView1.visibility = View.INVISIBLE
+        textView2.visibility = View.INVISIBLE
+        textView3.visibility = View.INVISIBLE
+        textViewTimeCompleted.visibility = View.INVISIBLE
+        textViewTimeRemf9.visibility = View.INVISIBLE
+        textViewTimeRemf8.visibility = View.INVISIBLE
+        textViewHomeTimeCompleted.visibility = View.INVISIBLE
+        textViewHomeMinTimeCompleted.visibility = View.INVISIBLE
+        textViewHomeTimeRemf9.visibility = View.INVISIBLE
+        textViewHomeMinTimeRemf9.visibility = View.INVISIBLE
+        textViewHomeTimeRemf8.visibility = View.INVISIBLE
+        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE
+    }
     /*fun showPopUp(view: View) {
         val popupMenu = PopupMenu(this, view)
         val inflater = popupMenu.menuInflater
@@ -394,15 +416,29 @@ class   MainActivity : AppCompatActivity() {
                 var dataOutTime = textViewOutTime.text.toString()
                 var dataTimeSpent = ChronoUnit.MINUTES.between(publicD1, publicD2).toString()
 
-                if(dataTimeSpent.toInt() > 570)
+                if (dataTimeSpent.toInt() > 570)
                     dataTimeSpent = "570"
 
                 var dataReg = "0"
 
                 var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
                 var dataLeave = "0"
+                var dataMonthOfYear = c[Calendar.MONTH].toString()
+                var dataDayOfWeek = c[Calendar.DAY_OF_WEEK].toString()
 
-                var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg, dataWeekOfYear = dataWeekOfYear, dataLeave = dataLeave))
+                var result = usersDBHelper.insertUser(
+                    UserModel(
+                        dataDate = dataDate,
+                        dataInTime = dataInTime,
+                        dataOutTime = dataOutTime,
+                        dataTimeSpent = dataTimeSpent,
+                        dataReg = dataReg,
+                        dataWeekOfYear = dataWeekOfYear,
+                        dataLeave = dataLeave,
+                        dataMonthOfYear = dataMonthOfYear,
+                        dataDayOfWeek = dataDayOfWeek
+                    )
+                )
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
             })
         builder.setNegativeButton("Cancel",
