@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,7 +14,7 @@ import android.os.SystemClock.sleep
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.INVISIBLE
+import android.view.View.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -37,6 +38,7 @@ class   MainActivity : AppCompatActivity() {
     var usersDBHelper = UsersDBHelper(this)                                                  // Init DB Helper class
     private val c : Calendar = Calendar.getInstance()                                               // Init Calender Object c
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -55,6 +57,8 @@ class   MainActivity : AppCompatActivity() {
         textViewHomeMinTimeRemf9.visibility = View.INVISIBLE
         textViewHomeTimeRemf8.visibility = View.INVISIBLE
         textViewHomeMinTimeRemf8.visibility = View.INVISIBLE
+        imageViewPlay.visibility = GONE
+        imageViewStop.visibility = GONE
 
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
@@ -130,14 +134,13 @@ class   MainActivity : AppCompatActivity() {
         var hourLocal : Int? = null
         var minuteLocal : Int? = null
 
-
         if (sharedPreferences.getString("TODAYDATE", "") == mDate.toString()) {
 
             if (sharedPreferences.getString("INTIME", "") != "") {
                 textViewInTime.text = sharedPreferences.getString("INTIME", "")
-                textViewOutTime.text = sharedPreferences.getString("OUTTIME", "")
+                textViewOutTime.text =  LocalTime.parse(textViewInTime.text).plusHours(9).toString()
                 Toast.makeText(this@MainActivity, "IN", Toast.LENGTH_SHORT).show()
-                //buttonViewRemTime.performClick()
+                /*//buttonViewRemTime.performClick()
                 val percentTimePassed: Int = ChronoUnit.MINUTES.between(
                     LocalTime.parse(textViewInTime.text),
                     LocalTime.now()
@@ -145,12 +148,11 @@ class   MainActivity : AppCompatActivity() {
                 val percentTime: Int = ((percentTimePassed.toFloat() / 540) * 100).toInt()
 
                 progressBar.progress = percentTime
-                textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"
-                textViewProgressStart.text = textViewInTime.text
+                textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"*/
+                //textViewProgressStart.text = textViewInTime.text
+                //textViewProgressEnd.text = textViewOutTime.text
 
-                textViewProgressEnd.text = LocalTime.parse(textViewInTime.text).plusHours(9).toString()
-
-                Toast.makeText(this@MainActivity, percentTimePassed.toString() + " " + percentTime, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "gdcsdbj", Toast.LENGTH_SHORT).show()
 
                 if (textViewInTime.text == "In Time") {
                     buttonWeekDetail.visibility = INVISIBLE
@@ -160,14 +162,12 @@ class   MainActivity : AppCompatActivity() {
                     textViewPercent.visibility = INVISIBLE
                     textViewTimeRemaining.visibility = INVISIBLE
 
-
                 }
 
-
-                    // ContDown Logic
-                    var timeRemaining =
-                        ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9) ).toLong()
-
+                if (LocalTime.now() < LocalTime.parse(textViewOutTime.text)) {
+                    Toast.makeText(this@MainActivity, "IFF", Toast.LENGTH_SHORT).show()
+                    // ContDown Logic for Less than 9 hr
+                    var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
                     val timer = object : CountDownTimer(timeRemaining, 1000) {
                         override fun onTick(millisUntilFinished: Long) {
 
@@ -175,35 +175,62 @@ class   MainActivity : AppCompatActivity() {
                             var hoursRemaining = minutesTotalRemaining / 60                              // Convert Difference to Hours
                             var minutesRemaining = minutesTotalRemaining % 60
                             textViewTimeRemaining.text = (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
-
-                            Toast.makeText(this@MainActivity, "TT " + minutesTotalRemaining.toString(), Toast.LENGTH_SHORT).show()
-                            Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
-
                             val percentTime: Int = ((minutesTotalRemaining.toFloat() / 540) * 100).toInt()
                             progressBar.progress = 100 - percentTime
 
-                            if (100 - percentTime > 100){
+                        }
 
-                                var extraMinutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9).plusMinutes(30))
-                                val extraPercentTime: Int = ((extraMinutesTotalRemaining.toFloat() / 30) * 100).toInt()
-                                progressBar2.progress = 100 - extraPercentTime
+                        override fun onFinish() {
+                            Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    timer.start()
+                }
+
+                else {
+                    Toast.makeText(this@MainActivity, "ELSE", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"LOCAL " + LocalTime.now(), Toast.LENGTH_SHORT).show()
+                    // Countdown Logic for More than 9hr and less than 9.30 hr
+                    var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9).plusMinutes(30)).toLong()
+                    val timer = object : CountDownTimer(timeRemaining, 1000) {
+                        override fun onTick(millisUntilFinished: Long) {
+
+                            var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
+                            var minutesRemaining = minutesTotalRemaining % 60
+                            textViewTimeRemaining.text = ("Working Extra for " + (-minutesRemaining).toString() + "min")
+                            val percentTime: Int = ((minutesTotalRemaining.toFloat() / 30) * 100).toInt()
+                            progressBar2.progress =  - percentTime
+                            progressBar.progress = 100
+
+                            if (-minutesRemaining > 30){
+                                textViewTimeRemaining.text = ("You have completed 9.30 hr")
                             }
 
                         }
 
                         override fun onFinish() {
-                            Toast.makeText(
-                                this@MainActivity,
-                                timeRemaining.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
                     timer.start()
-
+                }
 
             }
+
+
             Toast.makeText(this@MainActivity, "Out", Toast.LENGTH_SHORT).show()
+        }
+
+        if (textViewInTime.text == "In Time") {
+            buttonWeekDetail.visibility = INVISIBLE
+            progressBar.visibility = INVISIBLE
+            textViewProgressStart.visibility = INVISIBLE
+            textViewProgressEnd.visibility = INVISIBLE
+            textViewPercent.visibility = INVISIBLE
+            textViewTimeRemaining.visibility = INVISIBLE
+
+            imageViewPlay.visibility = VISIBLE
+
         }
 
 
@@ -255,7 +282,7 @@ class   MainActivity : AppCompatActivity() {
 
 
         // OnClick "VIEW" Button on main activity
-        viewButton.setOnClickListener {
+        /*viewButton.setOnClickListener {
 
             if (sharedPreferences.getBoolean(todayDay,false) == true) {                                             // Check if today is working day from SharedPreferences
 
@@ -358,9 +385,9 @@ class   MainActivity : AppCompatActivity() {
                         d4.hour.toString()                                                                 // Print Final time for 8hr: d1 + 8hr HH
                     timeRemf8HomeMinTextView.text =
                         d4.minute.toString()                                                               // Print Final time for 8hr: d1 + 8hr MM
-/*
+*//*
             Change color of TextView when completed the time
-*/
+*//*
                     if (diffCompleted > 540) {
                         timeCompletedTextView.setTextColor(this.getResources().getColor(R.color.green))
                     }
@@ -380,6 +407,220 @@ class   MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Today is not your working day.", Toast.LENGTH_SHORT).show()
             }
 
+        }*/
+
+        imageViewPlay.setOnClickListener {
+            textViewInTime.text = LocalTime.now().hour.toString() + ":" + LocalTime.now().minute.toString()
+            imageViewPlay.visibility = GONE
+            imageViewStop.visibility = VISIBLE
+
+            progressBar.visibility = VISIBLE
+            textViewTimeRemaining.visibility = VISIBLE
+            textViewPercent.visibility = VISIBLE
+
+            var settingInTime = textViewInTime.text.toString()
+
+            editor.putString("INTIME",settingInTime)
+            editor.putString("TODAYDATE", mDate)
+            editor.apply()
+
+            ///////////////////////////LOOPER////////////////////////////
+            if (LocalTime.now() < LocalTime.parse(textViewOutTime.text)) {
+                Toast.makeText(this@MainActivity, "IFF", Toast.LENGTH_SHORT).show()
+                // ContDown Logic for Less than 9 hr
+                var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
+                val timer = object : CountDownTimer(timeRemaining, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+
+                        var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
+                        var hoursRemaining = minutesTotalRemaining / 60                              // Convert Difference to Hours
+                        var minutesRemaining = minutesTotalRemaining % 60
+                        textViewTimeRemaining.text = (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
+                        val percentTime: Int = ((minutesTotalRemaining.toFloat() / 540) * 100).toInt()
+                        progressBar.progress = 100 - percentTime
+
+                    }
+
+                    override fun onFinish() {
+                        Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                timer.start()
+            }
+
+            else {
+                Toast.makeText(this@MainActivity, "ELSE", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"LOCAL " + LocalTime.now(), Toast.LENGTH_SHORT).show()
+                // Countdown Logic for More than 9hr and less than 9.30 hr
+                var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9).plusMinutes(30)).toLong()
+                val timer = object : CountDownTimer(timeRemaining, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+
+                        var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
+                        var minutesRemaining = minutesTotalRemaining % 60
+                        textViewTimeRemaining.text = ("Working Extra for " + (-minutesRemaining).toString() + "min")
+                        val percentTime: Int = ((minutesTotalRemaining.toFloat() / 30) * 100).toInt()
+                        progressBar2.progress =  - percentTime
+                        progressBar.progress = 100
+
+                        if (-minutesRemaining > 30){
+                            textViewTimeRemaining.text = ("You have completed 9.30 hr")
+                        }
+
+                    }
+
+                    override fun onFinish() {
+                        Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                timer.start()
+            }
+
+        }
+
+        imageViewStop.setOnClickListener {
+            if (textViewTimeCompleted.text != "Time")                                                                      // Check if there is any time set in "IN TIME"
+                Toast.makeText(this@MainActivity, "Please view time first.", Toast.LENGTH_SHORT).show()
+            else {
+                ///////////////////////////////////////////////////
+                if (sharedPreferences.getBoolean(todayDay,false) == true) {                                             // Check if today is working day from SharedPreferences
+
+                    if (textViewInTime.text == "In Time") {                                                                     // Check if there is any time set in "IN TIME"
+                        Toast.makeText(this@MainActivity, "Please select a In time.", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (LocalTime.parse(textViewInTime.text) > LocalTime.parse("14:00")) {
+                        Toast.makeText(this@MainActivity, "Please select In time less than 2 PM.", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+
+                        buttonSaveTime.visibility = View.VISIBLE
+                        textView1.visibility = View.VISIBLE
+                        textView2.visibility = View.VISIBLE
+                        textView3.visibility = View.VISIBLE
+                        textViewTimeCompleted.visibility = View.VISIBLE
+                        textViewTimeRemf9.visibility = View.VISIBLE
+                        textViewTimeRemf8.visibility = View.VISIBLE
+                        textViewHomeTimeCompleted.visibility = View.VISIBLE
+                        textViewHomeMinTimeCompleted.visibility = View.VISIBLE
+                        textViewHomeTimeRemf9.visibility = View.VISIBLE
+                        textViewHomeMinTimeRemf9.visibility = View.VISIBLE
+                        textViewHomeTimeRemf8.visibility = View.VISIBLE
+                        textViewHomeMinTimeRemf8.visibility = View.VISIBLE
+                        // Initial textView Colors
+                        timeCompletedTextView.setTextColor(getColor(R.color.black))
+                        timeRemf9TextView.setTextColor(getColor(R.color.black))
+                        timeRemf8TextView.setTextColor(getColor(R.color.black))
+
+                        mYear = c[Calendar.YEAR]
+                        mMonth = c[Calendar.MONTH]
+                        mDay = c[Calendar.DAY_OF_MONTH]
+                        mDate =
+                            mDay.toString() + "-" + (mMonth + 1).toString() + "-" + mYear.toString()
+
+                        var settingInTime = textViewInTime.text.toString()
+
+                        editor.putString("INTIME", settingInTime)
+                        editor.putString("TODAYDATE", mDate)
+                        editor.apply()
+
+                        hourLocal = LocalTime.now().hour
+                        minuteLocal = LocalTime.now().minute
+
+                        // Initializing the four different time values for many states
+                        var d1: LocalTime = LocalTime.parse(textViewInTime.text.toString())                                        // Parse Time selector text as IN Time
+                        var d2: LocalTime = LocalTime.now()                                                                        // Get local time from device
+                        var d3: LocalTime = d1.plusHours(9)                                                             // Set Time plus 9 hr
+                        var d4: LocalTime = d1.plusHours(8)                                                             // Set Time plus 8 hr
+                        var d5: LocalTime = d1                                                                                     // Set just as placeholder
+
+                        publicD1 = d1                                                                                              // save value public
+                        publicD2 = d2                                                                                              //save value public
+                        publicD3 = d3
+
+                        if (textViewOutTime.text == "Out Time" || textViewOutTime.text == "") {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Out time not selected.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            textViewOutTime.text = d2.hour.toString() + ":" + d2.minute.toString()
+                            d5 = d2
+                        } else {
+                            d5 =
+                                LocalTime.parse(textViewOutTime.text.toString())                                                   // Parse Time selector text as OUT Time
+                        }
+
+                        if (d1 > d5) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Out Time can not be before In Time.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        if (d5 < d2) {                                                                                                // Swap Out time with current Localtime if Already left
+                            d2 = d5
+                            Toast.makeText(this@MainActivity, "Swappped.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+
+                        var diffCompleted: Int = ChronoUnit.MINUTES.between(d1, d2)
+                            .toInt()  // Calculate difference between "In TIme" and "Current Time"
+                        var completedHours =
+                            diffCompleted / 60                              // Convert Difference to Hours
+                        var completedMinutes =
+                            diffCompleted % 60                            // Convert Difference to Minutes
+
+                        timeCompletedTextView.text =
+                            completedHours.toString() + "hr " + completedMinutes.toString() + "min"         // Print Completed time: (d2 - d1)
+                        timeCompletedHomeTextView.text =
+                            d2.hour.toString()                                                              // Print System current time: LocalTime HH
+                        timeCompletedHomeMinTextView.text =
+                            d2.minute.toString()                                                            // Print System Completed time current time: LocalTime MM
+
+                        var diffRem9: Int = ChronoUnit.MINUTES.between(d2, d3).toInt()
+                        var rem9Hours = diffRem9 / 60
+                        var rem9Minuutes = diffRem9 % 60
+
+                        timeRemf9TextView.text =
+                            rem9Hours.toString() + "hr " + rem9Minuutes.toString() + "min"                     // Print Remaining time for 9hr: (d3 - d2)
+                        timeRemf9HomeTextView.text =
+                            d3.hour.toString()                                                                 // Print Final time for 9hr: d1 + 9hr HH
+                        timeRemf9HomeMinTextView.text =
+                            d3.minute.toString()                                                               // Print Final time for 9hr: d1 + 9hr MM
+
+                        var diffRem8: Int = ChronoUnit.MINUTES.between(d2, d4).toInt()
+                        var rem8Hours = diffRem8 / 60
+                        var rem8Minutes = diffRem8 % 60
+
+                        timeRemf8TextView.text =
+                            rem8Hours.toString() + "hr " + rem8Minutes.toString() + "min"                      // Print Remaining time for 8hr: (d4 - d2)
+                        timeRemf8HomeTextView.text =
+                            d4.hour.toString()                                                                 // Print Final time for 8hr: d1 + 8hr HH
+                        timeRemf8HomeMinTextView.text =
+                            d4.minute.toString()                                                               // Print Final time for 8hr: d1 + 8hr MM
+/*
+            Change color of TextView when completed the time
+*/
+                        if (diffCompleted > 540) {
+                            timeCompletedTextView.setTextColor(this.getResources().getColor(R.color.green))
+                        }
+
+                        if (diffRem9 < 0) {
+                            timeRemf9TextView.setTextColor(getColor(R.color.green))
+                        }
+
+                        if (diffRem8 < 0) {
+                            timeRemf8TextView.setTextColor(getColor(R.color.green))
+                        }
+
+                    }
+                }
+                ////////////////////////////////////////////////////
+                textViewOutTime.text = LocalTime.now().hour.toString() + ":" + LocalTime.now().minute.toString()
+                popUpSaveToDB()  // Start POPUP
+            }
         }
 
         buttonWeekDetail.setOnClickListener {
@@ -390,8 +631,9 @@ class   MainActivity : AppCompatActivity() {
         buttonSaveTime.setOnClickListener {
             if (textViewTimeCompleted.text == "Time")                                                                      // Check if there is any time set in "IN TIME"
                 Toast.makeText(this@MainActivity, "Please view time first.", Toast.LENGTH_SHORT).show()
-            else
+            else {
                 popUpSaveToDB()  // Start POPUP
+            }
 
         }
 
@@ -399,6 +641,7 @@ class   MainActivity : AppCompatActivity() {
     override fun onBackPressed() {                                                                        // super.onBackPressed(); commented this line in order to disable back press
         Toast.makeText(applicationContext, "Back press disabled!", Toast.LENGTH_SHORT).show()
     }
+
 
 
     private fun popUpSaveToDB() {
@@ -411,7 +654,7 @@ class   MainActivity : AppCompatActivity() {
                 var dataDate = textViewTodayDate.text.toString()
                 var dataInTime = textViewInTime.text.toString()
                 var dataOutTime = textViewOutTime.text.toString()
-                var dataTimeSpent = ChronoUnit.MINUTES.between(publicD1, publicD2).toString()
+                var dataTimeSpent = ChronoUnit.MINUTES.between(LocalTime.parse(dataInTime), LocalTime.parse(dataOutTime)).toString()
 
                 if (dataTimeSpent.toInt() > 570)
                     dataTimeSpent = "570"
