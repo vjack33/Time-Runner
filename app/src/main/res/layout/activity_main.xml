@@ -9,29 +9,29 @@
         android:id="@+id/pickInTimeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="In Time"
-        app:layout_constraintStart_toStartOf="@+id/textViewInTime"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewInTime" />
 
     <Button
         android:id="@+id/pickOutTimeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Out Time"
-        app:layout_constraintEnd_toEndOf="@+id/textViewOutTime"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInTime" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewOutTime" />
 
     <TextView
         android:id="@+id/textViewInTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="8dp"
         android:text="In Time"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonViewRemTime"
+        app:layout_constraintBottom_toTopOf="@+id/pickInTimeBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -39,34 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="124dp"
         android:text="Out Time"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonViewRemTime"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/buttonViewRemTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonSaveTime"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewInTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonSaveTime"
-        app:layout_constraintTop_toTopOf="@+id/buttonSaveTime" />
-
-    <Button
-        android:id="@+id/buttonSaveTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:enabled="true"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonViewRemTime"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textViewInTime" />
 
 
     <TextView
@@ -74,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:text="Completed(HH:mm): "
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,10 +76,26 @@
         app:layout_constraintTop_toTopOf="@+id/textView1" />
 
     <TextView
+        android:id="@+id/textViewHomeTimeRemf9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textViewHomeTimeRemf8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HH"
+        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:text="Remaining for 9hr (HH:mm): "
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView1" />
@@ -115,14 +108,6 @@
         app:layout_constraintStart_toStartOf="@+id/textViewTimeCompleted"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-
-    <TextView
-        android:id="@+id/textViewHomeTimeRemf9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HH"
-        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView3"
@@ -167,36 +152,14 @@
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textViewHomeTimeRemf8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HH"
-        app:layout_constraintStart_toStartOf="@+id/textViewHomeTimeCompleted"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-    <Button
-        android:id="@+id/buttonSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setting"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonWeekDetail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonWeekDetail"
-        app:layout_constraintTop_toTopOf="@+id/buttonWeekDetail" />
-
-    <TextView
         android:id="@+id/textViewToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="82dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
         android:text="MONDAY"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimeRemaining"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintTop_toTopOf="@+id/buttonWeekDetail" />
 
     <Button
         android:id="@+id/buttonWeekDetail"
@@ -224,12 +187,13 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:progress="10"
         android:progressTint="#D98238"
-        app:layout_constraintHorizontal_weight="10"
         app:layout_constraintEnd_toStartOf="@+id/progressBar2"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonWeekDetail" />
 
@@ -246,25 +210,29 @@
         android:id="@+id/textViewProgressStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimeRemaining" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 
     <TextView
         android:id="@+id/textViewProgressEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimeRemaining" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <TextView
         android:id="@+id/textViewTimeRemaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar2"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -273,30 +241,35 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toEndOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
     <ImageView
         android:id="@+id/imageViewPlay"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewInTime"
-        app:layout_constraintEnd_toStartOf="@+id/textViewOutTime"
-        app:layout_constraintStart_toEndOf="@+id/textViewInTime"
-        app:layout_constraintTop_toTopOf="@+id/textViewInTime"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView1"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewStop"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewStop"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeRemaining"
+        app:layout_constraintVertical_bias="0.48000002"
         app:srcCompat="@drawable/start" />
 
     <ImageView
         android:id="@+id/imageViewStop"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewInTime"
-        app:layout_constraintEnd_toStartOf="@+id/textViewOutTime"
-        app:layout_constraintStart_toEndOf="@+id/textViewInTime"
-        app:layout_constraintTop_toTopOf="@+id/textViewInTime"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPlay"
+        app:layout_constraintVertical_bias="0.327"
         app:srcCompat="@drawable/stop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
