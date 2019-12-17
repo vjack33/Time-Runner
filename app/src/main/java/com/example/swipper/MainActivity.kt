@@ -7,13 +7,18 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.SystemClock
+import android.os.SystemClock.sleep
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.INVISIBLE
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginTop
+import kotlinx.android.synthetic.main.activity_config.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -28,15 +33,16 @@ class   MainActivity : AppCompatActivity() {
 
     var publicD1 : LocalTime? = null
     var publicD2 : LocalTime? = null
-    var usersDBHelper = UsersDBHelper(this)
-    val c = Calendar.getInstance()
+    var publicD3 : LocalTime? = null
+    var usersDBHelper = UsersDBHelper(this)                                                  // Init DB Helper class
+    private val c : Calendar = Calendar.getInstance()                                               // Init Calender Object c
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        hideAllViews()                                                                                  //For making all unnecessary INVISIBLE
 
-        /*buttonSaveTime.visibility = View.INVISIBLE
+        //For making all unnecessary INVISIBLE
+        buttonSaveTime.visibility = View.INVISIBLE
         textView1.visibility = View.INVISIBLE
         textView2.visibility = View.INVISIBLE
         textView3.visibility = View.INVISIBLE
@@ -48,11 +54,11 @@ class   MainActivity : AppCompatActivity() {
         textViewHomeTimeRemf9.visibility = View.INVISIBLE
         textViewHomeMinTimeRemf9.visibility = View.INVISIBLE
         textViewHomeTimeRemf8.visibility = View.INVISIBLE
-        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE*/
+        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE
 
-        //var usersDBHelper = UsersDBHelper(this)                                                      // Init DB Helper class
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
+
         // Saving Weekdays to SharedPreferences
         var settingName = "TEST" //editTextConfigName.text.toString()
         var settingSunday = false //checkBoxSunday.isChecked
@@ -62,17 +68,21 @@ class   MainActivity : AppCompatActivity() {
         var settingThursday = true//checkBoxThursday.isChecked
         var settingFriday = true//checkBoxFriday.isChecked
         var settingSaturday = false//checkBoxSaturday.isChecked
-
         var settingMaxHours = "9"//editTextMaxHours.text.toString()
         var settingMaxMinutes = "30"//editTextMaxMinutes.text.toString()
         var settingMinHours = "8"//editTextMinHours.text.toString()
         var settingMinMinutes = "00"//editTextMinMinutes.text.toString()
         var settingWeekHours = "45"//editTextWeekHours.text.toString()
         var settingWeekMinutes = "00"//editTextWeekMinutes.text.toString()
-
         var settingMaxAllMinutes : Int = (9*60)+30 //editTextMaxHours.text.toString().toInt() * 60 + editTextMaxMinutes.text.toString().toInt()
         var settingMinAllMinutes : Int = 8*60 //editTextMinHours.text.toString().toInt() * 60 + editTextMinMinutes.text.toString().toInt()
         var settingWeekAllMinutes : Int = 45*60 //editTextWeekHours.text.toString().toInt() * 60 + editTextWeekMinutes.text.toString().toInt()
+
+        // Saving Calender Instance
+        var mYear = c[Calendar.YEAR]
+        var mMonth = c[Calendar.MONTH]
+        var mDay = c[Calendar.DAY_OF_MONTH]
+        var mDate = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()
 
         // Pushing all collected config to SharedPreference
         val editor = sharedPreferences.edit()
@@ -95,13 +105,8 @@ class   MainActivity : AppCompatActivity() {
         editor.putString("WEEKALLMINUTES", settingWeekAllMinutes.toString())
         editor.apply()
 
-        val c = Calendar.getInstance()                                                                      // Init Calender Object c
-        var mYear = c[Calendar.YEAR]
-        var mMonth = c[Calendar.MONTH]
-        var mDay = c[Calendar.DAY_OF_MONTH]
-
         textViewToday.text = LocalDate.now().dayOfWeek.toString()                                           // Get today's day eg: SUNDAY
-        textViewTodayDate.text = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()     // Get today's date eg: 10-12-2019
+        textViewTodayDate.text = mDate                                                                      // Get today's date eg: 10-12-2019
 
         var todayDay = LocalDate.now().dayOfWeek.toString()                                                 // Save Today as LocalDate
         val mPickInTimeBtn = findViewById<Button>(R.id.pickInTimeBtn)                                       // Select In Time Button Init
@@ -125,26 +130,81 @@ class   MainActivity : AppCompatActivity() {
         var hourLocal : Int? = null
         var minuteLocal : Int? = null
 
-        if (sharedPreferences.getString("INTIME","") != ""){
-            textViewInTime.text = sharedPreferences.getString("INTIME","")
-            textViewOutTime.text = sharedPreferences.getString("OUTTIME","")
-            Toast.makeText(this@MainActivity, "IN", Toast.LENGTH_SHORT).show()
-            buttonViewRemTime.performClick()
-            val percentTimePassed : Int = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTime.text),LocalTime.now() ).toInt()
-            val percentTime : Int = ((percentTimePassed.toFloat() / 540) * 100).toInt()
 
-            //progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(this, R.color.red), PorterDuff.Mode.SRC_IN )
+        if (sharedPreferences.getString("TODAYDATE", "") == mDate.toString()) {
+
+            if (sharedPreferences.getString("INTIME", "") != "") {
+                textViewInTime.text = sharedPreferences.getString("INTIME", "")
+                textViewOutTime.text = sharedPreferences.getString("OUTTIME", "")
+                Toast.makeText(this@MainActivity, "IN", Toast.LENGTH_SHORT).show()
+                //buttonViewRemTime.performClick()
+                val percentTimePassed: Int = ChronoUnit.MINUTES.between(
+                    LocalTime.parse(textViewInTime.text),
+                    LocalTime.now()
+                ).toInt()
+                val percentTime: Int = ((percentTimePassed.toFloat() / 540) * 100).toInt()
+
+                progressBar.progress = percentTime
+                textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"
+                textViewProgressStart.text = textViewInTime.text
+
+                textViewProgressEnd.text = LocalTime.parse(textViewInTime.text).plusHours(9).toString()
+
+                Toast.makeText(this@MainActivity, percentTimePassed.toString() + " " + percentTime, Toast.LENGTH_SHORT).show()
+
+                if (textViewInTime.text == "In Time") {
+                    buttonWeekDetail.visibility = INVISIBLE
+                    progressBar.visibility = INVISIBLE
+                    textViewProgressStart.visibility = INVISIBLE
+                    textViewProgressEnd.visibility = INVISIBLE
+                    textViewPercent.visibility = INVISIBLE
+                    textViewTimeRemaining.visibility = INVISIBLE
 
 
-            progressBar.progress = percentTime
-            textViewPercent.text = ((percentTimePassed.toFloat() / 540) * 100).toInt().toString() + "% Completed"
-            textViewProgressStart.text = textViewInTime.text
+                }
 
-            textViewProgressEnd.text = LocalTime.parse(textViewInTime.text).plusHours(9).toString()
 
-            Toast.makeText(this@MainActivity, percentTimePassed.toString() + " " + percentTime, Toast.LENGTH_SHORT).show()
+                    // ContDown Logic
+                    var timeRemaining =
+                        ChronoUnit.MILLIS.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9) ).toLong()
+
+                    val timer = object : CountDownTimer(timeRemaining, 1000) {
+                        override fun onTick(millisUntilFinished: Long) {
+
+                            var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9)).toLong()
+                            var hoursRemaining = minutesTotalRemaining / 60                              // Convert Difference to Hours
+                            var minutesRemaining = minutesTotalRemaining % 60
+                            textViewTimeRemaining.text = (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
+
+                            Toast.makeText(this@MainActivity, "TT " + minutesTotalRemaining.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
+
+                            val percentTime: Int = ((minutesTotalRemaining.toFloat() / 540) * 100).toInt()
+                            progressBar.progress = 100 - percentTime
+
+                            if (100 - percentTime > 100){
+
+                                var extraMinutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), LocalTime.parse(sharedPreferences.getString("INTIME", "")).plusHours(9).plusMinutes(30))
+                                val extraPercentTime: Int = ((extraMinutesTotalRemaining.toFloat() / 30) * 100).toInt()
+                                progressBar2.progress = 100 - extraPercentTime
+                            }
+
+                        }
+
+                        override fun onFinish() {
+                            Toast.makeText(
+                                this@MainActivity,
+                                timeRemaining.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    timer.start()
+
+
+            }
+            Toast.makeText(this@MainActivity, "Out", Toast.LENGTH_SHORT).show()
         }
-        Toast.makeText(this@MainActivity, "Out", Toast.LENGTH_SHORT).show()
 
 
 
@@ -223,12 +283,16 @@ class   MainActivity : AppCompatActivity() {
                     timeRemf9TextView.setTextColor(getColor(R.color.black))
                     timeRemf8TextView.setTextColor(getColor(R.color.black))
 
-                    var settingInTime = textViewInTime.text.toString()
-                    //var settingOutTime = textViewOutTime.text.toString()
-                    editor.putString("INTIME",settingInTime)
-                    //editor.putString("LocalTIME",settingOutTime)
-                    editor.apply()
+                    mYear = c[Calendar.YEAR]
+                    mMonth = c[Calendar.MONTH]
+                    mDay = c[Calendar.DAY_OF_MONTH]
+                    mDate = mDay.toString() + "-" + (mMonth + 1).toString() +"-"+ mYear.toString()
 
+                    var settingInTime = textViewInTime.text.toString()
+
+                    editor.putString("INTIME",settingInTime)
+                    editor.putString("TODAYDATE", mDate)
+                    editor.apply()
 
                     hourLocal = LocalTime.now().hour
                     minuteLocal = LocalTime.now().minute
@@ -242,8 +306,7 @@ class   MainActivity : AppCompatActivity() {
 
                     publicD1 = d1                                                                                              // save value public
                     publicD2 = d2                                                                                              //save value public
-
-                                                                            // Enable "SAVE" to database Button
+                    publicD3 = d3
 
                     if (textViewOutTime.text == "Out Time" || textViewOutTime.text == "") {
                         Toast.makeText(this@MainActivity, "Out time not selected.", Toast.LENGTH_SHORT).show()
@@ -325,30 +388,12 @@ class   MainActivity : AppCompatActivity() {
         }
 
         buttonSaveTime.setOnClickListener {
-            if (textViewTimeCompleted.text == "Time") {                                                                     // Check if there is any time set in "IN TIME"
-            Toast.makeText(this@MainActivity, "Please view time first.", Toast.LENGTH_SHORT).show()
-        } else{
+            if (textViewTimeCompleted.text == "Time")                                                                      // Check if there is any time set in "IN TIME"
+                Toast.makeText(this@MainActivity, "Please view time first.", Toast.LENGTH_SHORT).show()
+            else
+                popUpSaveToDB()  // Start POPUP
 
-                popUpEditText()  // Start POPUP
-
-                /*var dataDate = textViewTodayDate.text.toString()
-                var dataInTime = textViewInTime.text.toString()
-                var dataOutTime = textViewOutTime.text.toString()
-                var dataTimeSpent = ChronoUnit.MINUTES.between(publicD1, publicD2).toString()
-
-            if(dataTimeSpent.toInt() > 570)
-                dataTimeSpent = "570"
-
-            var dataReg = "1"
-            var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
-            var dataLeave = "3"
-
-            var result = usersDBHelper.insertUser(UserModel(dataDate = dataDate,dataInTime = dataInTime,dataOutTime = dataOutTime,dataTimeSpent = dataTimeSpent,dataReg = dataReg, dataWeekOfYear = dataWeekOfYear, dataLeave = dataLeave))
-            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()*/
-            }
         }
-
-
 
     }
     override fun onBackPressed() {                                                                        // super.onBackPressed(); commented this line in order to disable back press
@@ -356,58 +401,10 @@ class   MainActivity : AppCompatActivity() {
     }
 
 
-
-    private fun hideAllViews() {
-        buttonSaveTime.visibility = View.INVISIBLE
-        textView1.visibility = View.INVISIBLE
-        textView2.visibility = View.INVISIBLE
-        textView3.visibility = View.INVISIBLE
-        textViewTimeCompleted.visibility = View.INVISIBLE
-        textViewTimeRemf9.visibility = View.INVISIBLE
-        textViewTimeRemf8.visibility = View.INVISIBLE
-        textViewHomeTimeCompleted.visibility = View.INVISIBLE
-        textViewHomeMinTimeCompleted.visibility = View.INVISIBLE
-        textViewHomeTimeRemf9.visibility = View.INVISIBLE
-        textViewHomeMinTimeRemf9.visibility = View.INVISIBLE
-        textViewHomeTimeRemf8.visibility = View.INVISIBLE
-        textViewHomeMinTimeRemf8.visibility = View.INVISIBLE
-    }
-    /*fun showPopUp(view: View) {
-        val popupMenu = PopupMenu(this, view)
-        val inflater = popupMenu.menuInflater
-        inflater.inflate(R.menu.header_menu, popupMenu.menu)
-        popupMenu.show()
-
-        popupMenu.setOnMenuItemClickListener {
-            when(it.itemId) {
-                R.id.header1 -> {
-                    Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show();
-                }
-                R.id.header2 -> {
-                    Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show();
-                }
-                R.id.header3 -> {
-                    Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show();
-                }
-            }
-            true
-        }
-    }*/
-
-
-    private fun popUpEditText() {
+    private fun popUpSaveToDB() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Note: Time can only be saved once.")
-        //val input = CheckBox(this)
-        //input.text ="Are you sure to save it."
-        //input.marginTop = 9
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-        //input.layoutParams = lp
-        //builder.setView(input)
-        // Set up the buttons
+        builder.setTitle("Time can only be saved once, Are you sure?")
+
         builder.setPositiveButton("OK",
             DialogInterface.OnClickListener { dialog, which ->
                 // do something here on OK
@@ -420,7 +417,6 @@ class   MainActivity : AppCompatActivity() {
                     dataTimeSpent = "570"
 
                 var dataReg = "0"
-
                 var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
                 var dataLeave = "0"
                 var dataMonthOfYear = c[Calendar.MONTH].toString()

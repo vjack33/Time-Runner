@@ -128,7 +128,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:text="Remaining for 8hr(HH:mm): "
         app:layout_constraintBottom_toTopOf="@+id/textViewInTime"
         app:layout_constraintStart_toStartOf="@+id/textView1" />
@@ -195,7 +195,8 @@
         app:layout_constraintBottom_toTopOf="@+id/textView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonWeekDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimeRemaining"
+        app:layout_constraintVertical_bias="0.644" />
 
     <Button
         android:id="@+id/buttonWeekDetail"
@@ -223,12 +224,11 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:progress="10"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:progress="10"
         android:progressTint="#D98238"
-        app:layout_constraintBottom_toTopOf="@+id/textViewToday"
         app:layout_constraintEnd_toStartOf="@+id/textViewProgressEnd"
         app:layout_constraintStart_toEndOf="@+id/textViewProgressStart"
         app:layout_constraintTop_toBottomOf="@+id/buttonWeekDetail" />
@@ -263,32 +263,22 @@
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/circularProgressbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/circularProgressbar"
-        app:srcCompat="@drawable/start" />
+    <TextView
+        android:id="@+id/textViewTimeRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <ProgressBar
-
-        android:id="@+id/circularProgressbar"
+        android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_centerInParent="true"
-        android:indeterminate="false"
-        android:max="100"
-        android:progress="40"
-        android:progressDrawable="@drawable/circular"
-        android:secondaryProgress="10"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textViewToday"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewTodayDate" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
