@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <rotate
+            android:fromDegrees="270"
+            android:toDegrees="270"
+            android:pivotX="50%"
+            android:pivotY="50%" >
+        <shape
+            android:innerRadiusRatio="2.5"
+            android:shape="ring"
+            android:thickness="4dp">
+            <gradient
+                android:endColor="#D6001B"
+                android:type="sweep"
+                android:useLevel="true" />
+        </shape>
+        </rotate>
+    </item>
+    <!--<item>
+        <rotate
+            android:drawable="@drawable/progress_particle"
+            android:fromDegrees="0"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:toDegrees="360" />
+    </item>-->
+
+</layer-list>
