@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        imageButtonPlay.visibility = VISIBLE
+
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -53,6 +57,9 @@ class MainActivity : AppCompatActivity() {
 
                 if (sharedPreferences.getString("TODAYDATE", "") == mDate.toString()) {
                     if (sharedPreferences.getString("INTIME", "") != "") {
+
+                        imageButtonPlay.visibility = INVISIBLE
+
                         textViewInTime.text = sharedPreferences.getString("INTIME", "")
                         textViewExpt8.text = LocalTime.parse(textViewInTime.text).plusHours(8).format(formatter).toString()
                         textViewExpt9.text = LocalTime.parse(textViewInTime.text).plusHours(9).format(formatter).toString()
@@ -151,6 +158,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         imageButtonPlay.setOnClickListener {
+
             if (LocalDate.now().dayOfWeek.toString() == "SUNDAY" || LocalDate.now().dayOfWeek.toString() == "SATURDAY") {
                 Toast.makeText(this@MainActivity, "Today is not not your Working Day", Toast.LENGTH_SHORT).show()
             }
@@ -158,6 +166,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Apply leave its 2 PM already.", Toast.LENGTH_SHORT).show()
             }
             else {
+
+                imageButtonPlay.visibility = INVISIBLE
+
                 textViewInTime.text = LocalTime.now().format(formatter).toString()
                 textViewExpt8.text = LocalTime.now().plusHours(8).format(formatter).toString()
                 textViewExpt9.text = LocalTime.now().plusHours(9).format(formatter).toString()

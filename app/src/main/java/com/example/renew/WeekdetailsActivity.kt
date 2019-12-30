@@ -3,11 +3,14 @@ package com.example.renew
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_weekdetails.*
@@ -26,7 +29,13 @@ class WeekdetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weekdetails)
 
-
+        textView20.visibility = INVISIBLE
+        buttonWeekCancel.visibility = INVISIBLE
+        buttonWeekSave.visibility = INVISIBLE
+        textViewInTimeFetched.isEnabled = false
+        textViewOutTimeFetched.isEnabled = false
+        textViewRegFetched.isEnabled = false
+        textViewLeaveFetched.isEnabled = false
 
         textViewWeekFetchDate.text = LocalDate.now().toString()
         var users = usersDBHelper.readUser(textViewWeekFetchDate.text.toString())
@@ -204,6 +213,16 @@ class WeekdetailsActivity : AppCompatActivity() {
         buttonWeekCancel.setOnClickListener {
             val intent = Intent(this, WeekdetailsActivity::class.java)
             startActivity(intent)
+        }
+
+        imageViewEditTime.setOnClickListener {
+            textView20.visibility = VISIBLE
+            buttonWeekCancel.visibility = VISIBLE
+            buttonWeekSave.visibility = VISIBLE
+            textViewInTimeFetched.isEnabled = true
+            textViewOutTimeFetched.isEnabled = true
+            textViewRegFetched.isEnabled = true
+            textViewLeaveFetched.isEnabled = true
         }
     }
 
