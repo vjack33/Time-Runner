@@ -6,6 +6,8 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -36,6 +38,7 @@ class WeekdetailsActivity : AppCompatActivity() {
         textViewOutTimeFetched.isEnabled = false
         textViewRegFetched.isEnabled = false
         textViewLeaveFetched.isEnabled = false
+
 
         textViewWeekFetchDate.text = LocalDate.now().toString()
         var users = usersDBHelper.readUser(textViewWeekFetchDate.text.toString())
@@ -203,9 +206,21 @@ class WeekdetailsActivity : AppCompatActivity() {
         }
 
         buttonWeekSave.setOnClickListener {
-            if (textViewSpentTimeFetched.text == "-"){
+            if (textViewSpentTimeFetched.text == "-" || textViewSpentTimeFetched.text.toString().toInt() < 0 ) {
                 Toast.makeText(this, "Select time properly.", Toast.LENGTH_SHORT).show()
-            } else {
+            }
+
+            else if (textViewSpentTimeFetched.text.toString().toInt() > 570) {
+                Toast.makeText(this, "Maximum allowed time is 9.5Hr.", Toast.LENGTH_SHORT).show()
+                textViewSpentTimeFetched.text = "570"
+                popUpEditText()
+            }
+
+            else if (textViewSpentTimeFetched.text.toString().toInt() < (8*60)){
+                Toast.makeText(this, "Please complete Minimum 8 Hours.", Toast.LENGTH_SHORT).show()
+            }
+
+            else {
                 popUpEditText()
             }
         }
@@ -223,6 +238,8 @@ class WeekdetailsActivity : AppCompatActivity() {
             textViewOutTimeFetched.isEnabled = true
             textViewRegFetched.isEnabled = true
             textViewLeaveFetched.isEnabled = true
+
+            banner5.setBackgroundColor(getColor(R.color.colorEditMode))
         }
     }
 
@@ -264,6 +281,10 @@ class WeekdetailsActivity : AppCompatActivity() {
 
                 if (dataLeave == "-")
                     dataLeave = "No"
+
+                if (dataLeave == "Yes")
+                    dataTimeSpent = "540"
+
 
                 var result = usersDBHelper.deleteUser(dataDate)
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()

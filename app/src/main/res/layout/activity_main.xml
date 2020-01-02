@@ -21,12 +21,13 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="68dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/banner7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/banner7"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintVertical_bias="0.51"
+        app:srcCompat="@drawable/dexter" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -85,7 +86,9 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="18dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/rectangle"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,9 +131,10 @@
                 android:id="@+id/divider2"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="118dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="@+id/banner"
+                app:layout_constraintEnd_toEndOf="@+id/banner"
+                app:layout_constraintHorizontal_bias="0.33"
                 app:layout_constraintStart_toStartOf="@+id/banner"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -138,10 +142,11 @@
                 android:id="@+id/divider3"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="118dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintBottom_toBottomOf="@+id/banner"
                 app:layout_constraintEnd_toEndOf="@+id/banner"
+                app:layout_constraintHorizontal_bias="0.68"
+                app:layout_constraintStart_toStartOf="@+id/banner"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <TextView
@@ -289,24 +294,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/banner2"
                 app:layout_constraintStart_toStartOf="@+id/banner2" />
 
-            <ImageButton
-                android:id="@+id/imageButtonStop1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:background="#00000000"
-                app:layout_constraintEnd_toEndOf="@+id/banner6"
-                app:layout_constraintTop_toBottomOf="@+id/banner6"
-                app:srcCompat="@drawable/baseline_pause_circle_outline_black_48" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageButtonPlay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="#00000000"
-                app:layout_constraintStart_toStartOf="@+id/banner6"
-                app:layout_constraintTop_toBottomOf="@+id/banner6"
+                app:layout_constraintBottom_toTopOf="@+id/textViewFunny"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
                 app:srcCompat="@drawable/baseline_play_circle_outline_black_48" />
 
             <TextView
@@ -417,6 +415,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/banner6"
                 app:layout_constraintStart_toEndOf="@+id/divider6"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+            <TextView
+                android:id="@+id/textViewAfterWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/banner1"
+                app:layout_constraintEnd_toEndOf="@+id/banner1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/banner1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

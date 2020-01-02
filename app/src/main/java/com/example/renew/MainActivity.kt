@@ -1,7 +1,6 @@
 package com.example.renew
 
 import android.app.AlertDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -16,7 +15,7 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.text.SimpleDateFormat
+import java.lang.String
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -36,6 +35,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         imageButtonPlay.visibility = VISIBLE
+        imageButtonStop.visibility = INVISIBLE
+        textViewPercent.visibility = INVISIBLE
+        textView9.visibility = INVISIBLE
+        progressBar.visibility = INVISIBLE
+        progressBar2.visibility = INVISIBLE
+
+        textViewTimeRemaining.visibility = VISIBLE
+        textViewAfterWelcome.visibility = INVISIBLE
 
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
@@ -59,6 +66,13 @@ class MainActivity : AppCompatActivity() {
                     if (sharedPreferences.getString("INTIME", "") != "") {
 
                         imageButtonPlay.visibility = INVISIBLE
+                        imageButtonStop.visibility = VISIBLE
+                        textViewPercent.visibility = VISIBLE
+                        textView9.visibility = VISIBLE
+                        progressBar.visibility = VISIBLE
+                        progressBar2.visibility = VISIBLE
+                        textViewTimeRemaining.visibility = VISIBLE
+                        textViewAfterWelcome.visibility = INVISIBLE
 
                         textViewInTime.text = sharedPreferences.getString("INTIME", "")
                         textViewExpt8.text = LocalTime.parse(textViewInTime.text).plusHours(8).format(formatter).toString()
@@ -81,12 +95,14 @@ class MainActivity : AppCompatActivity() {
                                     var hoursRemaining = (minutesTotalRemaining - 30) / 60                              // Convert Difference to Hours
                                     var minutesRemaining = (minutesTotalRemaining - 30) % 60
 
-                                    textViewTimeRemaining.text =
-                                        (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
-                                    var percentTime: Int =
-                                        (((minutesTotalRemaining.toFloat() - 30 ) / 540) * 100).toInt()
-                                    progressBar.progress = 100 - percentTime
-                                    textViewPercent.text = (100 - percentTime).toString() + "%"
+                                    textViewTimeRemaining.text = (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
+                                    var percentTime: Float = (((minutesTotalRemaining.toFloat() - 30 ) / 540) * 100)
+                                    progressBar.progress = (100 - percentTime).toInt()
+
+                                    val rounded = String.format("%.2f", (100 - percentTime))
+                                    textViewPercent.text = rounded + "%"
+
+                                   // textViewPercent.text = (100 - percentTime).toString() + "%"
 
                                     if (LocalTime.now() > tvInTime.plusHours(8))
                                         textViewFunny.text = "Minimum time completed"
@@ -139,7 +155,24 @@ class MainActivity : AppCompatActivity() {
                             var finalInTime = LocalTime.parse(textViewInTime.text.toString())
                             var finalOutTime = LocalTime.parse(textViewOutTime.text.toString())
                             var finalSpentMinutes = ChronoUnit.MINUTES.between(finalInTime, finalOutTime)
+                            if (finalSpentMinutes > 570) {
+                                finalSpentMinutes = 570
+                            }
                             textViewSpentTime.text = (finalSpentMinutes/60).toString().padStart(2, '0') + ":" + (finalSpentMinutes%60).toString().padStart(2, '0')
+
+                            if (finalSpentMinutes < 540){
+                                textViewAfterWelcome.text = "You have worked " + (540 - finalSpentMinutes) + " min less today."
+                            }
+                            else {
+                                textViewAfterWelcome.text = "You have worked " + (finalSpentMinutes - 540) + " min extra today."
+                            }
+                            imageButtonStop.visibility = INVISIBLE
+                            textViewPercent.visibility = INVISIBLE
+                            textView9.visibility = INVISIBLE
+                            progressBar.visibility = INVISIBLE
+                            progressBar2.visibility = INVISIBLE
+                            textViewTimeRemaining.visibility = INVISIBLE
+                            textViewAfterWelcome.visibility = VISIBLE
                         }
                     }
 
@@ -168,6 +201,14 @@ class MainActivity : AppCompatActivity() {
             else {
 
                 imageButtonPlay.visibility = INVISIBLE
+                imageButtonStop.visibility = VISIBLE
+                textViewPercent.visibility = VISIBLE
+                textView9.visibility = VISIBLE
+                progressBar.visibility = VISIBLE
+                progressBar2.visibility = VISIBLE
+
+                textViewTimeRemaining.visibility = VISIBLE
+                textViewAfterWelcome.visibility = INVISIBLE
 
                 textViewInTime.text = LocalTime.now().format(formatter).toString()
                 textViewExpt8.text = LocalTime.now().plusHours(8).format(formatter).toString()
@@ -201,9 +242,12 @@ class MainActivity : AppCompatActivity() {
 
                             textViewTimeRemaining.text =
                                 (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
-                            var percentTime: Int = (((minutesTotalRemaining.toFloat() - 30) / 540) * 100).toInt()
-                            progressBar.progress = 100 - percentTime
-                            textViewPercent.text = (100 - percentTime).toString() + "%"
+                            var percentTime: Float = (((minutesTotalRemaining.toFloat() - 30) / 540) * 100).toFloat()
+                            progressBar.progress = (100 - percentTime).toInt()
+                            //textViewPercent.text = (100 - percentTime).toString() + "%"
+
+                            val rounded = String.format("%.2f", (100 - percentTime))
+                            textViewPercent.text = rounded + "%"
 
                             if (LocalTime.now() > LocalTime.now().plusHours(8))
                                 textViewFunny.text = "Minimum time completed"
@@ -218,7 +262,7 @@ class MainActivity : AppCompatActivity() {
                             var percentTime: Int = ((minutesExtra.toFloat() / 30) * 100).toInt()
                             progressBar.progress = 100
 
-                            progressBar2.progress = percentTime
+                            progressBar2.progress = percentTime.toInt()
 
                             textViewPercent.text = "100%"
                             textViewFunny.text = "Working Extra"
@@ -253,12 +297,16 @@ class MainActivity : AppCompatActivity() {
         imageButtonStop.setOnClickListener {
             var finalOutTime = LocalTime.now()
             var finalInTime = LocalTime.parse(sharedPreferences.getString("INTIME", ""))
-            textViewOutTime.text = finalOutTime.format(formatter).toString()
             var finalSpentMinutes = ChronoUnit.MINUTES.between(finalInTime, finalOutTime)
 
-            textViewSpentTime.text = (finalSpentMinutes/60).toString().padStart(2, '0') + ":" + (finalSpentMinutes%60).toString().padStart(2, '0')
+            if (finalSpentMinutes.toString().toInt() < (8*60)) {
+                Toast.makeText(this, "Please complete Minimum 8 Hours.", Toast.LENGTH_SHORT).show()
+            } else {
+                textViewOutTime.text = finalOutTime.format(formatter).toString()
+                textViewSpentTime.text = (finalSpentMinutes/60).toString().padStart(2, '0') + ":" + (finalSpentMinutes%60).toString().padStart(2, '0')
 
-            popUpSaveToDB()
+                popUpSaveToDB()
+            }
 
         }
 

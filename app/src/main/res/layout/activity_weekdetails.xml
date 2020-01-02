@@ -101,9 +101,10 @@
         android:id="@+id/divider11"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/divider12"
+        app:layout_constraintEnd_toEndOf="@+id/banner6"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="@+id/banner6"
         app:layout_constraintTop_toTopOf="@+id/divider12" />
 
@@ -111,30 +112,29 @@
         android:id="@+id/divider12"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/banner6"
         app:layout_constraintEnd_toEndOf="@+id/banner6"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="@+id/banner6"
         app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
     <View
         android:id="@+id/divider13"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/divider8"
-        app:layout_constraintStart_toStartOf="@+id/banner5"
+        app:layout_constraintStart_toStartOf="@+id/divider11"
         app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
     <View
         android:id="@+id/divider14"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/divider8"
-        app:layout_constraintEnd_toEndOf="@+id/banner5"
+        app:layout_constraintStart_toStartOf="@+id/divider12"
         app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
     <TextView
@@ -221,14 +221,13 @@
 
     <ImageView
         android:id="@+id/imageViewEditTime"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toTopOf="@+id/divider7"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintTop_toTopOf="@+id/banner5"
-        app:layout_constraintVertical_bias="0.346"
-        app:srcCompat="@drawable/callogo" />
+        app:srcCompat="@drawable/pencil" />
 
     <TextView
         android:id="@+id/textView21"
@@ -395,10 +394,9 @@
         android:id="@+id/divider15"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/banner4"
-        app:layout_constraintStart_toStartOf="@+id/banner4"
+        app:layout_constraintStart_toStartOf="@+id/divider11"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
     <View
@@ -416,10 +414,9 @@
         android:id="@+id/divider16"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="118dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/banner4"
-        app:layout_constraintEnd_toEndOf="@+id/banner4"
+        app:layout_constraintStart_toStartOf="@+id/divider12"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
     <ImageView
@@ -448,7 +445,7 @@
         android:layout_height="0dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/banner5"
-        app:layout_constraintStart_toStartOf="@+id/divider13"
+        app:layout_constraintStart_toStartOf="@+id/divider11"
         app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
     <View
@@ -457,7 +454,7 @@
         android:layout_height="0dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/banner5"
-        app:layout_constraintEnd_toEndOf="@+id/divider14"
+        app:layout_constraintStart_toStartOf="@+id/divider12"
         app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
     <TextView
