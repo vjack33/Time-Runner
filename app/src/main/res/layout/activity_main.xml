@@ -34,7 +34,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner7"
-        tools:layout_editor_absoluteX="48dp">
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="74dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,12 +56,11 @@
 
             <TextView
                 android:id="@+id/textViewTimeRemaining"
+                style="@style/TextTopHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Welcome"
-                android:textColor="#333333"
-                android:textSize="18sp"
+                android:text="@string/welcome_text"
                 app:layout_constraintBottom_toBottomOf="@+id/banner1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +108,7 @@
 
             <TextView
                 android:id="@+id/textViewDetailedCurrentTime"
+                style="@style/TextCardHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -151,68 +152,62 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/TextRedSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="In"
-                android:textColor="#D6001B"
-                android:textSize="12sp"
+                android:text="@string/in_time"
                 app:layout_constraintEnd_toStartOf="@+id/divider2"
                 app:layout_constraintStart_toStartOf="@+id/banner"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <TextView
                 android:id="@+id/textView3"
+                style="@style/TextBlueSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Out"
-                android:textColor="#009DFF"
-                android:textSize="12sp"
+                android:text="@string/out_time"
                 app:layout_constraintEnd_toStartOf="@+id/divider3"
                 app:layout_constraintStart_toEndOf="@+id/divider2"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
                 android:id="@+id/textView4"
+                style="@style/TextGreenSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total"
-                android:textColor="#22D165"
-                android:textSize="12sp"
+                android:text="@string/total_time"
                 app:layout_constraintEnd_toEndOf="@+id/banner"
                 app:layout_constraintStart_toEndOf="@+id/divider3"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
                 android:id="@+id/textViewInTime"
+                style="@style/TextRedBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="-"
-                android:textColor="#D6001B"
-                android:textSize="20sp"
+                android:text="@string/empty_value"
                 app:layout_constraintEnd_toStartOf="@+id/divider2"
                 app:layout_constraintStart_toStartOf="@+id/banner"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <TextView
                 android:id="@+id/textViewOutTime"
+                style="@style/TextBlueBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:textColor="#009DFF"
-                android:textSize="20sp"
+                android:text="@string/empty_value"
                 app:layout_constraintEnd_toStartOf="@+id/divider3"
                 app:layout_constraintStart_toEndOf="@+id/divider2"
                 app:layout_constraintTop_toTopOf="@+id/textViewInTime" />
 
             <TextView
                 android:id="@+id/textViewSpentTime"
+                style="@style/TextGreenBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:textColor="#22D165"
-                android:textSize="20sp"
+                android:text="@string/empty_value"
                 app:layout_constraintEnd_toEndOf="@+id/banner"
                 app:layout_constraintStart_toEndOf="@+id/divider3"
                 app:layout_constraintTop_toTopOf="@+id/textViewInTime" />
@@ -230,19 +225,19 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progressDrawable="@drawable/circular_progress"
                 android:layout_width="194dp"
                 android:layout_height="194dp"
                 android:layout_marginTop="30dp"
+                android:progressDrawable="@drawable/circular_progress"
                 app:layout_constraintEnd_toEndOf="@+id/banner2"
                 app:layout_constraintStart_toStartOf="@+id/banner2"
                 app:layout_constraintTop_toTopOf="@+id/banner2" />
 
             <ProgressBar
                 android:id="@+id/progressBar2"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="194dp"
                 android:layout_height="194dp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:progressDrawable="@drawable/circular_progress"
                 app:layout_constraintBottom_toBottomOf="@+id/progressBar"
                 app:layout_constraintEnd_toEndOf="@+id/progressBar"
@@ -254,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:text="0%"
+                android:text="@string/empty_value"
                 android:textColor="#D6001B"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/progressBar"
@@ -274,12 +269,11 @@
 
             <TextView
                 android:id="@+id/imageButtonStop"
+                style="@style/TextRedSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
-                android:text="Tap to stop timer >>"
-                android:textColor="#D6001B"
-                android:textSize="12sp"
+                android:text="@string/tap_to_stop"
                 app:layout_constraintBottom_toBottomOf="@+id/banner2"
                 app:layout_constraintEnd_toEndOf="@+id/banner2"
                 app:layout_constraintStart_toStartOf="@+id/banner2" />
@@ -299,21 +293,23 @@
                 android:id="@+id/imageButtonPlay"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_margin="30dp"
                 android:background="#00000000"
                 app:layout_constraintBottom_toTopOf="@+id/textViewFunny"
                 app:layout_constraintEnd_toEndOf="@+id/progressBar"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="@+id/progressBar"
                 app:layout_constraintTop_toTopOf="@+id/progressBar"
-                app:srcCompat="@drawable/baseline_play_circle_outline_black_48" />
+                app:srcCompat="@drawable/power_button" />
 
             <TextView
                 android:id="@+id/textView14"
+                style="@style/TextCardHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
-                android:text="Expected Out Time"
+                android:text="@string/expected_out_time"
                 app:layout_constraintStart_toStartOf="@+id/banner6"
                 app:layout_constraintTop_toTopOf="@+id/banner6" />
 
@@ -348,45 +344,42 @@
 
             <TextView
                 android:id="@+id/textView35"
+                style="@style/TextRedSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="8 Hours"
-                android:textColor="#D6001B"
-                android:textSize="12sp"
+                android:text="@string/hours_8"
                 app:layout_constraintEnd_toStartOf="@+id/divider5"
                 app:layout_constraintStart_toStartOf="@+id/banner6"
                 app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
             <TextView
                 android:id="@+id/textView36"
+                style="@style/TextBlueSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9 Hours"
-                android:textColor="#009DFF"
-                android:textSize="12sp"
+                android:text="@string/hours_9"
                 app:layout_constraintEnd_toStartOf="@+id/divider6"
                 app:layout_constraintStart_toEndOf="@+id/divider5"
                 app:layout_constraintTop_toTopOf="@+id/textView35" />
 
             <TextView
                 android:id="@+id/textView37"
+                style="@style/TextGreenSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9.5 Hours"
-                android:textColor="#22D165"
-                android:textSize="12sp"
+                android:text="@string/hours_95"
                 app:layout_constraintEnd_toEndOf="@+id/banner6"
                 app:layout_constraintStart_toEndOf="@+id/divider6"
                 app:layout_constraintTop_toTopOf="@+id/textView35" />
 
             <TextView
                 android:id="@+id/textViewExpt8"
+                style="@style/TextRedBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="-"
-                android:textColor="#D6001B"
+                android:text="@string/empty_value"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/divider5"
                 app:layout_constraintStart_toStartOf="@+id/banner6"
@@ -394,24 +387,22 @@
 
             <TextView
                 android:id="@+id/textViewExpt9"
+                style="@style/TextBlueBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="-"
-                android:textColor="#009DFF"
-                android:textSize="20sp"
+                android:text="@string/empty_value"
                 app:layout_constraintEnd_toStartOf="@+id/divider6"
                 app:layout_constraintStart_toEndOf="@+id/divider5"
                 app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
             <TextView
                 android:id="@+id/textViewExpt95"
+                style="@style/TextGreenBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="-"
-                android:textColor="#22D165"
-                android:textSize="20sp"
+                android:text="@string/empty_value"
                 app:layout_constraintEnd_toEndOf="@+id/banner6"
                 app:layout_constraintStart_toEndOf="@+id/divider6"
                 app:layout_constraintTop_toBottomOf="@+id/textView37" />
@@ -426,6 +417,16 @@
                 app:layout_constraintEnd_toEndOf="@+id/banner1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/banner1" />
+
+            <ImageView
+                android:id="@+id/imageViewSleep"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar"
+                app:srcCompat="@drawable/sleep" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

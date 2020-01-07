@@ -48,10 +48,10 @@
 
     <TextView
         android:id="@+id/textViewWeekFetchDate"
+        style="@style/TextCardHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10-12-19"
-        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/divider7"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toStartOf="@+id/banner5"
@@ -139,82 +139,75 @@
 
     <TextView
         android:id="@+id/textView13"
+        style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="In"
-        android:textColor="#D6001B"
-        android:textSize="12sp"
+        android:text="@string/day_in_time"
         app:layout_constraintEnd_toStartOf="@+id/divider13"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
     <TextView
         android:id="@+id/textView15"
+        style="@style/TextBlueSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Out"
-        android:textColor="#009DFF"
-        android:textSize="12sp"
+        android:text="@string/day_Out_time"
         app:layout_constraintEnd_toStartOf="@+id/divider14"
         app:layout_constraintStart_toEndOf="@+id/divider13"
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView16"
+        style="@style/TextGreenSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spent"
-        android:textColor="#22D165"
-        android:textSize="12sp"
+        android:text="@string/day_Spent_time"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider14"
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textViewInTimeFetched"
+        style="@style/TextRedBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="-"
-        android:textColor="#D6001B"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toStartOf="@+id/divider13"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textViewOutTimeFetched"
+        style="@style/TextBlueBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="-"
-        android:textColor="#009DFF"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toStartOf="@+id/divider14"
         app:layout_constraintStart_toEndOf="@+id/divider13"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textViewSpentTimeFetched"
+        style="@style/TextGreenBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="-"
-        android:textColor="#22D165"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider14"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView20"
+        style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Tap the field you want to edit >>"
-        android:textColor="#D6001B"
-        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toBottomOf="@+id/banner5" />
@@ -231,6 +224,7 @@
 
     <TextView
         android:id="@+id/textView21"
+        style="@style/TextCardHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -241,76 +235,71 @@
 
     <TextView
         android:id="@+id/textView22"
+        style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Total"
-        android:textColor="#D6001B"
-        android:textSize="12sp"
+        android:text="@string/week_total"
         app:layout_constraintEnd_toStartOf="@+id/divider11"
         app:layout_constraintStart_toStartOf="@+id/banner6"
         app:layout_constraintTop_toBottomOf="@+id/divider9" />
 
     <TextView
         android:id="@+id/textView23"
+        style="@style/TextBlueSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Completed"
-        android:textColor="#009DFF"
-        android:textSize="12sp"
+        android:text="@string/week_completed"
         app:layout_constraintEnd_toStartOf="@+id/divider12"
         app:layout_constraintStart_toEndOf="@+id/divider11"
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <TextView
         android:id="@+id/textView24"
+        style="@style/TextGreenSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remaining"
-        android:textColor="#22D165"
-        android:textSize="12sp"
+        android:text="@string/week_remaining"
         app:layout_constraintEnd_toEndOf="@+id/banner6"
         app:layout_constraintStart_toEndOf="@+id/divider12"
         app:layout_constraintTop_toTopOf="@+id/textView22" />
 
     <TextView
         android:id="@+id/textViewWeekTotal"
+        style="@style/TextRedBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="45:00"
-        android:textColor="#D6001B"
-        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/divider11"
         app:layout_constraintStart_toStartOf="@+id/banner6"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <TextView
         android:id="@+id/textViewWeekCompleted"
+        style="@style/TextBlueBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="09:00"
-        android:textColor="#009DFF"
-        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/divider12"
         app:layout_constraintStart_toEndOf="@+id/divider11"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <TextView
         android:id="@+id/textViewWeekRemaining"
+        style="@style/TextGreenBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="30:00"
-        android:textColor="#22D165"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/banner6"
         app:layout_constraintStart_toEndOf="@+id/divider12"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <TextView
         android:id="@+id/textView28"
+        style="@style/TextCardHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Month Overview"
@@ -320,72 +309,66 @@
 
     <TextView
         android:id="@+id/textView29"
+        style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Leaves"
-        android:textColor="#D6001B"
-        android:textSize="12sp"
+        android:text="@string/month_leave"
         app:layout_constraintEnd_toStartOf="@+id/divider15"
         app:layout_constraintStart_toStartOf="@+id/banner4"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
     <TextView
         android:id="@+id/textView30"
+        style="@style/TextBlueSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Regularisations"
-        android:textColor="#009DFF"
-        android:textSize="12sp"
+        android:text="@string/month_regular"
         app:layout_constraintEnd_toStartOf="@+id/divider16"
         app:layout_constraintStart_toEndOf="@+id/divider15"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
     <TextView
         android:id="@+id/textView31"
+        style="@style/TextGreenSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="-"
-        android:textColor="#22D165"
-        android:textSize="12sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toEndOf="@+id/banner4"
         app:layout_constraintStart_toEndOf="@+id/divider16"
         app:layout_constraintTop_toBottomOf="@+id/divider10" />
 
     <TextView
         android:id="@+id/textViewLeaves"
+        style="@style/TextRedBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="10"
-        android:textColor="#D6001B"
-        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/divider15"
         app:layout_constraintStart_toStartOf="@+id/banner4"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <TextView
         android:id="@+id/textViewRegularise"
+        style="@style/TextBlueBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="9"
-        android:textColor="#009DFF"
-        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/divider16"
         app:layout_constraintStart_toEndOf="@+id/divider15"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <TextView
         android:id="@+id/textView34"
+        style="@style/TextGreenBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="-"
-        android:textColor="#22D165"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toEndOf="@+id/banner4"
         app:layout_constraintStart_toEndOf="@+id/divider16"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -431,9 +414,10 @@
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/TextTopHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OVERVIEW"
+        android:text="@string/secondary_activity_header"
         app:layout_constraintBottom_toBottomOf="@+id/banner8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -459,68 +443,62 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="-"
-        android:textColor="#D6001B"
-        android:textSize="12sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toStartOf="@+id/divider17"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
     <TextView
         android:id="@+id/textView6"
+        style="@style/TextBlueSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Regularised"
-        android:textColor="#009DFF"
-        android:textSize="12sp"
+        android:text="@string/day_regular"
         app:layout_constraintEnd_toStartOf="@+id/divider18"
         app:layout_constraintStart_toEndOf="@+id/divider17"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView7"
+        style="@style/TextGreenSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leave"
-        android:textColor="#22D165"
-        android:textSize="12sp"
+        android:text="@string/day_leave"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider18"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textViewHalfDayFetched"
+        style="@style/TextRedBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="-"
-        android:textColor="#D6001B"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toStartOf="@+id/divider17"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textViewLeaveFetched"
+        style="@style/TextGreenBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-"
-        android:textColor="#22D165"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider18"
         app:layout_constraintTop_toTopOf="@+id/textViewHalfDayFetched" />
 
     <TextView
         android:id="@+id/textViewRegFetched"
+        style="@style/TextBlueBig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-"
-        android:textColor="#009DFF"
-        android:textSize="20sp"
+        android:text="@string/empty_value"
         app:layout_constraintEnd_toStartOf="@+id/divider18"
         app:layout_constraintStart_toEndOf="@+id/divider17"
         app:layout_constraintTop_toTopOf="@+id/textViewHalfDayFetched" />
@@ -548,7 +526,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:text="Save"
+        android:text="@string/save"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider18"
         app:layout_constraintTop_toBottomOf="@+id/banner5" />
@@ -557,7 +536,8 @@
         android:id="@+id/buttonWeekCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/divider17"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toTopOf="@+id/buttonWeekSave" />

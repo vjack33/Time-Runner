@@ -20,11 +20,18 @@
     </item>
     <!--<item>
         <rotate
+            android:fromDegrees="270"
+            android:toDegrees="270"
+            android:pivotX="50%"
+            android:pivotY="50%" >
+
+        <rotate
             android:drawable="@drawable/progress_particle"
             android:fromDegrees="0"
             android:pivotX="50%"
             android:pivotY="50%"
             android:toDegrees="360" />
+        </rotate>
     </item>-->
 
 </layer-list>

@@ -246,7 +246,7 @@ class WeekdetailsActivity : AppCompatActivity() {
 
     private fun popUpEditText() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Do you really want to apply Leave?")
+        builder.setTitle("Sure, save it?")
         //val input = CheckBox(this)
         //input.text ="Are you sure to save it."
         //input.marginTop = 9

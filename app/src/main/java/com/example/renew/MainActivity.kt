@@ -14,6 +14,9 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.renew.AppConfig.AVG_HOURS_PER_DAY
+import com.example.renew.AppConfig.MAX_HOURS_PER_DAY
+import com.example.renew.AppConfig.MIN_HOURS_PER_DAY
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.String
 import java.time.LocalDate
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         textViewTimeRemaining.visibility = VISIBLE
         textViewAfterWelcome.visibility = INVISIBLE
+        imageViewSleep.visibility = INVISIBLE
 
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
@@ -73,15 +77,16 @@ class MainActivity : AppCompatActivity() {
                         progressBar2.visibility = VISIBLE
                         textViewTimeRemaining.visibility = VISIBLE
                         textViewAfterWelcome.visibility = INVISIBLE
+                        imageViewSleep.visibility = INVISIBLE
 
                         textViewInTime.text = sharedPreferences.getString("INTIME", "")
-                        textViewExpt8.text = LocalTime.parse(textViewInTime.text).plusHours(8).format(formatter).toString()
-                        textViewExpt9.text = LocalTime.parse(textViewInTime.text).plusHours(9).format(formatter).toString()
-                        textViewExpt95.text = LocalTime.parse(textViewInTime.text).plusHours(9).plusMinutes(30).format(formatter).toString()
+                        textViewExpt8.text = LocalTime.parse(textViewInTime.text).plusMinutes(MIN_HOURS_PER_DAY.toLong()).format(formatter).toString()
+                        textViewExpt9.text = LocalTime.parse(textViewInTime.text).plusMinutes(AVG_HOURS_PER_DAY.toLong()).format(formatter).toString()
+                        textViewExpt95.text = LocalTime.parse(textViewInTime.text).plusMinutes(MAX_HOURS_PER_DAY.toLong()).format(formatter).toString()
 
                         var tvInTime : LocalTime = LocalTime.parse(textViewInTime.text)
-                        var tvOutTime9 : LocalTime = tvInTime.plusHours(9)
-                        var tvOutTime95 : LocalTime = tvOutTime9.plusMinutes(30)
+                        var tvOutTime9 : LocalTime = tvInTime.plusMinutes(AVG_HOURS_PER_DAY.toLong())
+                        var tvOutTime95 : LocalTime = tvInTime.plusMinutes(MAX_HOURS_PER_DAY.toLong())
 
                         // ContDown Logic for Less than 9 hr
                         var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), tvOutTime95)
@@ -125,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                                 }
 
                                 else if (minutesTotalRemaining <= 0) {
-                                    textViewTimeRemaining.text = ("You hv exceeded 9.5 hr limit for today. ")
+                                    textViewTimeRemaining.text = ("You have exceeded 9.5 hr limit for today. ")
                                     progressBar.progress = 100
                                     progressBar2.progress = 100
                                     textViewPercent.text = "100%"
@@ -137,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
                             override fun onFinish() {
                                 //Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
-                                textViewTimeRemaining.text = ("You hv exceeded 9.5 hr limit for today. ")
+                                textViewTimeRemaining.text = ("You have exceeded 9.5 hr limit for today. ")
                                 progressBar.progress = 0
                                 progressBar2.progress = 100
                                 textViewPercent.text = "100%"
@@ -173,6 +178,8 @@ class MainActivity : AppCompatActivity() {
                             progressBar2.visibility = INVISIBLE
                             textViewTimeRemaining.visibility = INVISIBLE
                             textViewAfterWelcome.visibility = VISIBLE
+                            imageViewSleep.visibility = VISIBLE
+
                         }
                     }
 
@@ -209,6 +216,7 @@ class MainActivity : AppCompatActivity() {
 
                 textViewTimeRemaining.visibility = VISIBLE
                 textViewAfterWelcome.visibility = INVISIBLE
+                imageViewSleep.visibility = INVISIBLE
 
                 textViewInTime.text = LocalTime.now().format(formatter).toString()
                 textViewExpt8.text = LocalTime.now().plusHours(8).format(formatter).toString()
@@ -258,7 +266,7 @@ class MainActivity : AppCompatActivity() {
                         else if (minutesTotalRemaining < 30 && minutesTotalRemaining > 0) {
                             var minutesExtra = (30 - minutesTotalRemaining)  % 60
 
-                            textViewTimeRemaining.text = ("You hv worked " + minutesExtra + "min extra. ")
+                            textViewTimeRemaining.text = ("You have worked " + minutesExtra + "min extra. ")
                             var percentTime: Int = ((minutesExtra.toFloat() / 30) * 100).toInt()
                             progressBar.progress = 100
 

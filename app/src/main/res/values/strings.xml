@@ -1,3 +1,42 @@
 <resources>
-    <string name="app_name">renew</string>
+    <string name="app_name">Swiper</string>
+
+    <string name="welcome_text">Welcome</string>
+
+    <string name="in_time">In</string>
+    <string name="out_time">Out</string>
+    <string name="total_time">Total</string>
+
+    <string name="expected_out_time">Expected Out Time</string>
+    <string name="hours_8">8 Hours</string>
+    <string name="hours_9">9 Hours</string>
+    <string name="hours_95">9.5 Hours</string>
+
+
+    <string name="empty_value">-</string>
+    <string name="tap_to_stop">Tap to stop timer >></string>
+
+
+<!--
+    WEEK DETAILS
+-->
+    <string name="secondary_activity_header">OVERVIEW</string>
+
+    <string name="week_total">Total</string>
+    <string name="week_completed">Completed</string>
+    <string name="week_remaining">Remaining</string>
+
+    <string name="month_leave">Leaves</string>
+    <string name="month_regular">Regularisations</string>
+    <string name="month_holiday"></string>
+    <string name="month_halfday"></string>
+
+    <string name="day_in_time">In</string>
+    <string name="day_Out_time">Out</string>
+    <string name="day_Spent_time">Spent</string>
+    <string name="day_regular">Regularised</string>
+    <string name="day_leave">Leave</string>
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

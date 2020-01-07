@@ -11,8 +11,49 @@
         <item name="android:textColor">#333333</item>
     </style>
 
-    <style name="TextColor" >
-        <item name="android:fontFamily">@font/poppins_bold</item>
+    <style name="TextTopHeader" >
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorHeaderBlack</item>
+    </style>
+
+    <style name="TextCardHeader" >
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextColorSmall" >
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextColorBig" >
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextRedSmall" parent="TextColorSmall">
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
+
+    <style name="TextBlueSmall" parent="TextColorSmall">
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+
+    <style name="TextGreenSmall" parent="TextColorSmall">
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+
+    <style name="TextRedBig" parent="TextColorBig">
+        <item name="android:textColor">@color/colorRed</item>
+    </style>
+
+    <style name="TextBlueBig" parent="TextColorBig">
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+
+    <style name="TextGreenBig" parent="TextColorBig">
+        <item name="android:textColor">@color/colorGreen</item>
     </style>
 
 </resources>
