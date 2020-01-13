@@ -11,11 +11,23 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.example.renew.AppConfig.AVG_HOURS_PER_DAY
+import com.example.renew.AppConfig.MAX_HOURS_PER_DAY
+import com.example.renew.AppConfig.MAX_WEEK_HOURS
+import com.example.renew.AppConfig.MINIMUM_TIME_RESTRICTION
+import com.example.renew.AppConfig.MIN_HOURS_PER_DAY
+import com.example.renew.AppConfig.TOAST_FUTURE
+import com.example.renew.AppConfig.TOAST_MAXTIME
+import com.example.renew.AppConfig.TOAST_MINTIME
+import com.example.renew.AppConfig.TOAST_SAMEDAY_LEAVE_REG
+import com.example.renew.AppConfig.TOAST_TIME_SELECTION_ERROR
 import kotlinx.android.synthetic.main.activity_weekdetails.*
+import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
@@ -64,14 +76,19 @@ class WeekdetailsActivity : AppCompatActivity() {
         textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
         textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
 
-        var remainingWeekTime = (45*60) - weekHours*60 - weekMinutes
+        var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
         var remainingWeekHours = remainingWeekTime / 60
         var remainingWeekMinutes = remainingWeekTime % 60
         textViewWeekRemaining.text = remainingWeekHours.toString().padStart(2,'0') + ":" + remainingWeekMinutes.toString().padStart(2,'0')
 
+        textViewWeekOverViewName.text = "Week " + c[Calendar.WEEK_OF_MONTH].toString()
+        textViewMonthOverViewName.text = DateFormatSymbols().months[c[Calendar.MONTH]]
+        textViewDayOverViewName.text = DateFormatSymbols().weekdays[c[Calendar.DAY_OF_WEEK]]
+
+
         imageButtonWeekNextDate.setOnClickListener {
             if (textViewWeekFetchDate.text.toString() == LocalDate.now().toString()){
-                Toast.makeText(applicationContext, "Can't view future dates.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, TOAST_FUTURE, Toast.LENGTH_SHORT).show()
             }
             else {
                 textViewWeekFetchDate.text = LocalDate.parse(textViewWeekFetchDate.text).plusDays(1).toString()
@@ -96,6 +113,33 @@ class WeekdetailsActivity : AppCompatActivity() {
                     textViewLeaveFetched.text = it.dataLeave
 
                 }
+
+                val d = Calendar.getInstance()
+                var tempDate = textViewWeekFetchDate.text.toString()
+                var tempparts = tempDate.split("-")
+                d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
+
+                var tWeek = d[Calendar.WEEK_OF_YEAR]
+                textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
+                textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
+                textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
+
+                var totalWeekTime: Int = usersDBHelper.readTimeCompleted(tWeek.toString()).toString().toInt()
+                var weekHours = totalWeekTime / 60
+                var weekMinutes = totalWeekTime % 60
+
+//                Toast.makeText(this, usersDBHelper.readTimeCompleted(tWeek.toString()).toString().toInt(), Toast.LENGTH_SHORT).show()
+
+
+                textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
+                textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
+                textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+
+                var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
+                var remainingWeekHours = remainingWeekTime / 60
+                var remainingWeekMinutes = remainingWeekTime % 60
+                textViewWeekRemaining.text = remainingWeekHours.toString().padStart(2,'0') + ":" + remainingWeekMinutes.toString().padStart(2,'0')
+
 
             }
         }
@@ -122,6 +166,31 @@ class WeekdetailsActivity : AppCompatActivity() {
                 textViewRegFetched.text = it.dataReg
                 textViewLeaveFetched.text = it.dataLeave
             }
+
+            val d = Calendar.getInstance()
+            var tempDate = textViewWeekFetchDate.text.toString()
+            var tempparts = tempDate.split("-")
+            d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
+
+            var tWeek = d[Calendar.WEEK_OF_YEAR]
+            textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
+            textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
+            textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
+
+            var totalWeekTime: Int = usersDBHelper.readTimeCompleted(tWeek.toString()).toString().toInt()
+            var weekHours = totalWeekTime / 60
+            var weekMinutes = totalWeekTime % 60
+
+            textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
+            textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
+            textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+
+            var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
+            var remainingWeekHours = remainingWeekTime / 60
+            var remainingWeekMinutes = remainingWeekTime % 60
+            textViewWeekRemaining.text = remainingWeekHours.toString().padStart(2,'0') + ":" + remainingWeekMinutes.toString().padStart(2,'0')
+
+
         }
 
 
@@ -130,8 +199,46 @@ class WeekdetailsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        imageViewEditTime.setOnClickListener {
+        textViewWeekFetchDate.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val dateSetListener = DatePickerDialog.OnDateSetListener{ datePicker, year, month, dayOfMonth ->
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, month)
+                cal.set(Calendar.DAY_OF_MONTH,dayOfMonth)
 
+                textViewWeekFetchDate.text = SimpleDateFormat("YYYY-MM-DD").format(cal.time)                // HH:mm format Out Time
+
+                val d = Calendar.getInstance()
+                var tempDate = textViewWeekFetchDate.text.toString()
+                var tempparts = tempDate.split("-")
+                d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
+
+                var tWeek = d[Calendar.WEEK_OF_YEAR]
+                textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
+                textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
+                textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
+
+                var totalWeekTime: Int = usersDBHelper.readTimeCompleted(tWeek.toString()).toString().toInt()
+                var weekHours = totalWeekTime / 60
+                var weekMinutes = totalWeekTime % 60
+
+                textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
+                textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
+                textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+
+                var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
+                var remainingWeekHours = remainingWeekTime / 60
+                var remainingWeekMinutes = remainingWeekTime % 60
+                textViewWeekRemaining.text = remainingWeekHours.toString().padStart(2,'0') + ":" + remainingWeekMinutes.toString().padStart(2,'0')
+            }
+
+            DatePickerDialog(
+                this,
+                dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
 
@@ -143,7 +250,7 @@ class WeekdetailsActivity : AppCompatActivity() {
                 textViewInTimeFetched.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format Out Time
 
                 if (textViewInTimeFetched.text != "-" && textViewOutTimeFetched.text != "-")
-                textViewSpentTimeFetched.text = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTimeFetched.text), LocalTime.parse(textViewOutTimeFetched.text)).toString()
+                    textViewSpentTimeFetched.text = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTimeFetched.text), LocalTime.parse(textViewOutTimeFetched.text)).toString()
 
             }
 
@@ -165,7 +272,7 @@ class WeekdetailsActivity : AppCompatActivity() {
                 textViewOutTimeFetched.text = SimpleDateFormat("HH:mm").format(cal.time)                // HH:mm format Out Time
 
                 if (textViewInTimeFetched.text != "-" && textViewOutTimeFetched.text != "-")
-                textViewSpentTimeFetched.text = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTimeFetched.text), LocalTime.parse(textViewOutTimeFetched.text)).toString()
+                    textViewSpentTimeFetched.text = ChronoUnit.MINUTES.between(LocalTime.parse(textViewInTimeFetched.text), LocalTime.parse(textViewOutTimeFetched.text)).toString()
 
             }
 
@@ -183,7 +290,7 @@ class WeekdetailsActivity : AppCompatActivity() {
 
             if (textViewRegFetched.text == "No"){
                 if (textViewLeaveFetched.text == "Yes"){
-                    Toast.makeText(this, "You can not apply Leave and Regularisation on same day.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, TOAST_SAMEDAY_LEAVE_REG, Toast.LENGTH_SHORT).show()
                 } else {
                     textViewRegFetched.text = "Yes"
                 }
@@ -196,7 +303,7 @@ class WeekdetailsActivity : AppCompatActivity() {
         textViewLeaveFetched.setOnClickListener{
             if (textViewLeaveFetched.text == "No"){
                 if (textViewRegFetched.text == "Yes"){
-                    Toast.makeText(this, "You can not apply Leave and Regularisation on same day.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
                 } else {
                     textViewLeaveFetched.text = "Yes"
                 }
@@ -207,17 +314,17 @@ class WeekdetailsActivity : AppCompatActivity() {
 
         buttonWeekSave.setOnClickListener {
             if (textViewSpentTimeFetched.text == "-" || textViewSpentTimeFetched.text.toString().toInt() < 0 ) {
-                Toast.makeText(this, "Select time properly.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, TOAST_TIME_SELECTION_ERROR, Toast.LENGTH_SHORT).show()
             }
 
-            else if (textViewSpentTimeFetched.text.toString().toInt() > 570) {
-                Toast.makeText(this, "Maximum allowed time is 9.5Hr.", Toast.LENGTH_SHORT).show()
-                textViewSpentTimeFetched.text = "570"
+            else if (textViewSpentTimeFetched.text.toString().toInt() > MAX_HOURS_PER_DAY) {
+                Toast.makeText(this, TOAST_MAXTIME, Toast.LENGTH_SHORT).show()
+                textViewSpentTimeFetched.text = MAX_HOURS_PER_DAY.toString()
                 popUpEditText()
             }
 
-            else if (textViewSpentTimeFetched.text.toString().toInt() < (8*60)){
-                Toast.makeText(this, "Please complete Minimum 8 Hours.", Toast.LENGTH_SHORT).show()
+            else if ((textViewSpentTimeFetched.text.toString().toInt() < MIN_HOURS_PER_DAY) && MINIMUM_TIME_RESTRICTION){
+                Toast.makeText(this, TOAST_MINTIME, Toast.LENGTH_SHORT).show()
             }
 
             else {
@@ -277,13 +384,13 @@ class WeekdetailsActivity : AppCompatActivity() {
                 var dataDayOfWeek = d[Calendar.DAY_OF_WEEK].toString()
 
                 if (dataReg == "-")
-                    dataDate = "No"
+                    dataReg = "No"
 
                 if (dataLeave == "-")
                     dataLeave = "No"
 
                 if (dataLeave == "Yes")
-                    dataTimeSpent = "540"
+                    dataTimeSpent = AVG_HOURS_PER_DAY.toString()
 
 
                 var result = usersDBHelper.deleteUser(dataDate)
@@ -291,21 +398,21 @@ class WeekdetailsActivity : AppCompatActivity() {
 
                 result = usersDBHelper.insertUser(
                     UserModel(
-                            dataDate = dataDate,
-                            dataInTime = dataInTime,
-                            dataOutTime = dataOutTime,
-                            dataTimeSpent = dataTimeSpent,
-                            dataReg = dataReg,
-                            dataWeekOfYear = dataWeekOfYear,
-                            dataLeave = dataLeave,
-                            dataMonthOfYear = dataMonthOfYear,
-                            dataDayOfWeek = dataDayOfWeek
-                        )
+                        dataDate = dataDate,
+                        dataInTime = dataInTime,
+                        dataOutTime = dataOutTime,
+                        dataTimeSpent = dataTimeSpent,
+                        dataReg = dataReg,
+                        dataWeekOfYear = dataWeekOfYear,
+                        dataLeave = dataLeave,
+                        dataMonthOfYear = dataMonthOfYear,
+                        dataDayOfWeek = dataDayOfWeek
                     )
+                )
                 Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
 
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
 
             })
         builder.setNegativeButton("Cancel",

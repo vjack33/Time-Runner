@@ -39,4 +39,6 @@
 
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+
+    <string name="same_day_leave_reg">You can not apply Leave and Regularisation on same day.</string>
 </resources>

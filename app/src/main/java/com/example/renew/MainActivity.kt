@@ -16,7 +16,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.renew.AppConfig.AVG_HOURS_PER_DAY
 import com.example.renew.AppConfig.MAX_HOURS_PER_DAY
+import com.example.renew.AppConfig.MINIMUM_TIME_RESTRICTION
 import com.example.renew.AppConfig.MIN_HOURS_PER_DAY
+import com.example.renew.AppConfig.TOAST_MINITIME_NOT_COMPLETED
+import com.example.renew.AppConfig.TOAST_MINTIME
+import com.example.renew.AppConfig.TOAST_MINTIME_COMPLETED
+import com.example.renew.AppConfig.WORKING_DAYS
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.String
 import java.time.LocalDate
@@ -24,6 +29,7 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.math.max
 
 
 class MainActivity : AppCompatActivity() {
@@ -95,13 +101,15 @@ class MainActivity : AppCompatActivity() {
 
                                 var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), tvOutTime95)
 
-                                if (minutesTotalRemaining >= 30) {
+                                var maxAvg = MAX_HOURS_PER_DAY - AVG_HOURS_PER_DAY
 
-                                    var hoursRemaining = (minutesTotalRemaining - 30) / 60                              // Convert Difference to Hours
-                                    var minutesRemaining = (minutesTotalRemaining - 30) % 60
+                                if (minutesTotalRemaining >= maxAvg) {
+
+                                    var hoursRemaining = (minutesTotalRemaining - maxAvg) / 60                              // Convert Difference to Hours
+                                    var minutesRemaining = (minutesTotalRemaining - maxAvg) % 60
 
                                     textViewTimeRemaining.text = (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
-                                    var percentTime: Float = (((minutesTotalRemaining.toFloat() - 30 ) / 540) * 100)
+                                    var percentTime: Float = (((minutesTotalRemaining.toFloat() - maxAvg ) / AVG_HOURS_PER_DAY) * 100)
                                     progressBar.progress = (100 - percentTime).toInt()
 
                                     val rounded = String.format("%.2f", (100 - percentTime))
@@ -109,16 +117,16 @@ class MainActivity : AppCompatActivity() {
 
                                    // textViewPercent.text = (100 - percentTime).toString() + "%"
 
-                                    if (LocalTime.now() > tvInTime.plusHours(8))
-                                        textViewFunny.text = "Minimum time completed"
+                                    if (LocalTime.now() > tvInTime.plusHours(MIN_HOURS_PER_DAY.toLong()))
+                                        textViewFunny.text = TOAST_MINTIME_COMPLETED
                                     else
-                                        textViewFunny.text = "Minimum time not yet completed"
+                                        textViewFunny.text = TOAST_MINITIME_NOT_COMPLETED
                                 }
 
-                                else if (minutesTotalRemaining < 30 && minutesTotalRemaining > 0) {
-                                    var minutesExtra = (30 - minutesTotalRemaining)  % 60
+                                else if (minutesTotalRemaining < maxAvg && minutesTotalRemaining > 0) {
+                                    var minutesExtra = (maxAvg - minutesTotalRemaining)  % 60
                                     textViewTimeRemaining.text = ("You hv worked " + minutesExtra + "min extra. ")
-                                    var percentTime: Int = ((minutesExtra.toFloat() / 30) * 100).toInt()
+                                    var percentTime: Int = ((minutesExtra.toFloat() / maxAvg) * 100).toInt()
                                     progressBar.progress = 100
                                     progressBar2.progress = percentTime
                                     //progressBar.setBackgroundColor(3)
@@ -160,16 +168,16 @@ class MainActivity : AppCompatActivity() {
                             var finalInTime = LocalTime.parse(textViewInTime.text.toString())
                             var finalOutTime = LocalTime.parse(textViewOutTime.text.toString())
                             var finalSpentMinutes = ChronoUnit.MINUTES.between(finalInTime, finalOutTime)
-                            if (finalSpentMinutes > 570) {
-                                finalSpentMinutes = 570
+                            if (finalSpentMinutes > MAX_HOURS_PER_DAY) {
+                                finalSpentMinutes = MAX_HOURS_PER_DAY.toLong()
                             }
                             textViewSpentTime.text = (finalSpentMinutes/60).toString().padStart(2, '0') + ":" + (finalSpentMinutes%60).toString().padStart(2, '0')
 
-                            if (finalSpentMinutes < 540){
-                                textViewAfterWelcome.text = "You have worked " + (540 - finalSpentMinutes) + " min less today."
+                            if (finalSpentMinutes < AVG_HOURS_PER_DAY){
+                                textViewAfterWelcome.text = "You have worked " + (AVG_HOURS_PER_DAY - finalSpentMinutes) + " min less today."
                             }
                             else {
-                                textViewAfterWelcome.text = "You have worked " + (finalSpentMinutes - 540) + " min extra today."
+                                textViewAfterWelcome.text = "You have worked " + (finalSpentMinutes - AVG_HOURS_PER_DAY) + " min extra today."
                             }
                             imageButtonStop.visibility = INVISIBLE
                             textViewPercent.visibility = INVISIBLE
@@ -199,7 +207,7 @@ class MainActivity : AppCompatActivity() {
 
         imageButtonPlay.setOnClickListener {
 
-            if (LocalDate.now().dayOfWeek.toString() == "SUNDAY" || LocalDate.now().dayOfWeek.toString() == "SATURDAY") {
+            if (!WORKING_DAYS.contains(LocalDate.now().dayOfWeek.toString() )) {
                 Toast.makeText(this@MainActivity, "Today is not not your Working Day", Toast.LENGTH_SHORT).show()
             }
             else if (LocalTime.now() > LocalTime.parse("14:00")) {
@@ -219,9 +227,9 @@ class MainActivity : AppCompatActivity() {
                 imageViewSleep.visibility = INVISIBLE
 
                 textViewInTime.text = LocalTime.now().format(formatter).toString()
-                textViewExpt8.text = LocalTime.now().plusHours(8).format(formatter).toString()
-                textViewExpt9.text = LocalTime.now().plusHours(9).format(formatter).toString()
-                textViewExpt95.text = LocalTime.now().plusHours(9).plusMinutes(30).format(formatter).toString()
+                textViewExpt8.text = LocalTime.now().plusMinutes(MIN_HOURS_PER_DAY.toLong()).format(formatter).toString()
+                textViewExpt9.text = LocalTime.now().plusMinutes(AVG_HOURS_PER_DAY.toLong()).format(formatter).toString()
+                textViewExpt95.text = LocalTime.now().plusMinutes(MAX_HOURS_PER_DAY.toLong()).format(formatter).toString()
 
                 // Saving Calender Instance
                 var mYear = c[Calendar.YEAR]
@@ -233,7 +241,7 @@ class MainActivity : AppCompatActivity() {
                 editor.putString("TODAYDATE", mDate)
                 editor.apply()
 
-                var tvOutTime95 : LocalTime = LocalTime.now().plusHours(9).plusMinutes(30)
+                /*var tvOutTime95 : LocalTime = LocalTime.now().plusMinutes(MAX_HOURS_PER_DAY.toLong())
 
                 // ContDown Logic for Less than 9 hr
                 var timeRemaining = ChronoUnit.MILLIS.between(LocalTime.now(), tvOutTime95)
@@ -242,32 +250,34 @@ class MainActivity : AppCompatActivity() {
 
                         var minutesTotalRemaining = ChronoUnit.MINUTES.between(LocalTime.now(), tvOutTime95)
 
-                        if (minutesTotalRemaining >= 30) {
+                        var maxAvg = MAX_HOURS_PER_DAY - AVG_HOURS_PER_DAY
+
+                        if (minutesTotalRemaining >= maxAvg) {
 
                             var hoursRemaining =
-                                (minutesTotalRemaining - 30) / 60                              // Convert Difference to Hours
-                            var minutesRemaining = (minutesTotalRemaining - 30) % 60
+                                (minutesTotalRemaining - maxAvg) / 60                              // Convert Difference to Hours
+                            var minutesRemaining = (minutesTotalRemaining - maxAvg) % 60
 
                             textViewTimeRemaining.text =
                                 (hoursRemaining.toString() + "hr " + minutesRemaining.toString() + "min remaining")
-                            var percentTime: Float = (((minutesTotalRemaining.toFloat() - 30) / 540) * 100).toFloat()
+                            var percentTime: Float = (((minutesTotalRemaining.toFloat() - maxAvg) / AVG_HOURS_PER_DAY) * 100).toFloat()
                             progressBar.progress = (100 - percentTime).toInt()
                             //textViewPercent.text = (100 - percentTime).toString() + "%"
 
                             val rounded = String.format("%.2f", (100 - percentTime))
                             textViewPercent.text = rounded + "%"
 
-                            if (LocalTime.now() > LocalTime.now().plusHours(8))
+                            if (LocalTime.now() > LocalTime.now().plusMinutes(MIN_HOURS_PER_DAY.toLong()))
                                 textViewFunny.text = "Minimum time completed"
                             else
                                 textViewFunny.text = "Minimum time not yet completed"
                         }
 
-                        else if (minutesTotalRemaining < 30 && minutesTotalRemaining > 0) {
-                            var minutesExtra = (30 - minutesTotalRemaining)  % 60
+                        else if (minutesTotalRemaining < maxAvg && minutesTotalRemaining > 0) {
+                            var minutesExtra = (maxAvg - minutesTotalRemaining)  % 60
 
                             textViewTimeRemaining.text = ("You have worked " + minutesExtra + "min extra. ")
-                            var percentTime: Int = ((minutesExtra.toFloat() / 30) * 100).toInt()
+                            var percentTime: Int = ((minutesExtra.toFloat() / maxAvg) * 100).toInt()
                             progressBar.progress = 100
 
                             progressBar2.progress = percentTime.toInt()
@@ -278,11 +288,11 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         else if (minutesTotalRemaining <= 0) {
-                            textViewTimeRemaining.text = ("You hv exceeded 9.5 hr limit for today. ")
+                            textViewTimeRemaining.text = ("You have completed maximum limit of " + (MAX_HOURS_PER_DAY / 60)+ "Hr "+(MAX_HOURS_PER_DAY % 60)+ "Min for today")
                             //progressBar.progress = 100
                             progressBar2.progress = 100
                             textViewPercent.text = "100%"
-                            textViewFunny.text = "9.5 Hour limit reached"
+                            textViewFunny.text = (MAX_HOURS_PER_DAY / 60).toString() + "Hr "+ (MAX_HOURS_PER_DAY % 60).toString() + "Min limit reached"
 
                         }
 
@@ -290,7 +300,7 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onFinish() {
                         //Toast.makeText(this@MainActivity, timeRemaining.toString(), Toast.LENGTH_SHORT).show()
-                        textViewTimeRemaining.text = ("You hv exceeded 9.5 hr limit for today. ")
+                        textViewTimeRemaining.text = ("You have exceeded MAax limit for today. ")
                         progressBar.progress = 0
                         progressBar2.progress = 100
                         textViewPercent.text = "100%"
@@ -298,7 +308,7 @@ class MainActivity : AppCompatActivity() {
 
                     }
                 }
-                timer.start()
+                timer.start()*/
             }
         }
 
@@ -307,8 +317,9 @@ class MainActivity : AppCompatActivity() {
             var finalInTime = LocalTime.parse(sharedPreferences.getString("INTIME", ""))
             var finalSpentMinutes = ChronoUnit.MINUTES.between(finalInTime, finalOutTime)
 
-            if (finalSpentMinutes.toString().toInt() < (8*60)) {
-                Toast.makeText(this, "Please complete Minimum 8 Hours.", Toast.LENGTH_SHORT).show()
+
+            if ((finalSpentMinutes.toString().toInt() < (MIN_HOURS_PER_DAY)) && MINIMUM_TIME_RESTRICTION) {
+                Toast.makeText(this, TOAST_MINTIME, Toast.LENGTH_SHORT).show()
             } else {
                 textViewOutTime.text = finalOutTime.format(formatter).toString()
                 textViewSpentTime.text = (finalSpentMinutes/60).toString().padStart(2, '0') + ":" + (finalSpentMinutes%60).toString().padStart(2, '0')
@@ -334,8 +345,8 @@ class MainActivity : AppCompatActivity() {
                 var dataOutTime = textViewOutTime.text.toString()
                 var dataTimeSpent = ChronoUnit.MINUTES.between(LocalTime.parse(dataInTime), LocalTime.parse(dataOutTime)).toString()
 
-                if (dataTimeSpent.toInt() > 570)
-                    dataTimeSpent = "570"
+                if (dataTimeSpent.toInt() > MAX_HOURS_PER_DAY)
+                    dataTimeSpent = MAX_HOURS_PER_DAY.toString()
 
                 var dataReg = "No"
                 var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()

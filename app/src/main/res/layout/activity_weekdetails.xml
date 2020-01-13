@@ -31,31 +31,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeekFetchDate" />
 
     <View
         android:id="@+id/banner6"
         android:layout_width="0dp"
         android:layout_height="138dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="18dp"
         android:background="@drawable/rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner8" />
+        app:layout_constraintTop_toBottomOf="@+id/banner5" />
 
     <TextView
         android:id="@+id/textViewWeekFetchDate"
         style="@style/TextCardHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
         android:text="10-12-19"
-        app:layout_constraintBottom_toTopOf="@+id/divider7"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toStartOf="@+id/banner5"
-        app:layout_constraintTop_toTopOf="@+id/banner5" />
+        app:layout_constraintTop_toBottomOf="@+id/banner8" />
 
     <View
         android:id="@+id/divider7"
@@ -206,20 +206,20 @@
         style="@style/TextRedSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Tap the field you want to edit >>"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toStartOf="@+id/banner5"
-        app:layout_constraintTop_toBottomOf="@+id/banner5" />
+        app:layout_constraintTop_toBottomOf="@+id/banner4" />
 
     <ImageView
         android:id="@+id/imageViewEditTime"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider7"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
-        app:layout_constraintTop_toTopOf="@+id/banner5"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
         app:srcCompat="@drawable/pencil" />
 
     <TextView
@@ -507,30 +507,30 @@
         android:id="@+id/imageButtonWeekPreviousDate"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider7"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
         app:layout_constraintEnd_toStartOf="@+id/textViewWeekFetchDate"
-        app:layout_constraintTop_toTopOf="@+id/banner5"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
         app:srcCompat="@drawable/round_arrow_back_ios_black_48" />
 
     <ImageView
         android:id="@+id/imageButtonWeekNextDate"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider7"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
         app:layout_constraintStart_toEndOf="@+id/textViewWeekFetchDate"
-        app:layout_constraintTop_toTopOf="@+id/banner5"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
         app:srcCompat="@drawable/round_arrow_forward_ios_black_48" />
 
     <Button
         android:id="@+id/buttonWeekSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="10dp"
         android:text="@string/save"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/banner5"
         app:layout_constraintStart_toEndOf="@+id/divider18"
-        app:layout_constraintTop_toBottomOf="@+id/banner5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <Button
         android:id="@+id/buttonWeekCancel"
@@ -541,5 +541,43 @@
         app:layout_constraintEnd_toStartOf="@+id/divider17"
         app:layout_constraintStart_toStartOf="@+id/banner5"
         app:layout_constraintTop_toTopOf="@+id/buttonWeekSave" />
+
+    <TextView
+        android:id="@+id/textViewWeekOverViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="-"
+        app:layout_constraintEnd_toEndOf="@+id/divider9"
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textViewMonthOverViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="-"
+        app:layout_constraintEnd_toEndOf="@+id/divider10"
+        app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Day Overview"
+        app:layout_constraintBottom_toTopOf="@+id/divider7"
+        app:layout_constraintStart_toStartOf="@+id/banner5"
+        app:layout_constraintTop_toTopOf="@+id/banner5" />
+
+    <TextView
+        android:id="@+id/textViewDayOverViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="@+id/banner5"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
