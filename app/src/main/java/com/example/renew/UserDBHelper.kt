@@ -207,7 +207,9 @@ class UsersDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                     DBContract.UserEntry.COLUMN_DATA_MONTH_OF_YEAR + " TEXT," +
                     DBContract.UserEntry.COLUMN_DATA_DAY_OF_WEEK + " TEXT)"
 
+
         private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBContract.UserEntry.TABLE_NAME
+
     }
 
 }

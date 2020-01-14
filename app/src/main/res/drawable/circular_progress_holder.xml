@@ -16,7 +16,7 @@
                 android:type="sweep"
                 android:useLevel="true" />-->
             <solid
-                android:color="#D6001B"/>
+                android:color="#ecf0f1"/>
         </shape>
         </rotate>
     </item>

@@ -18,6 +18,7 @@ import com.example.renew.AppConfig.AVG_HOURS_PER_DAY
 import com.example.renew.AppConfig.MAX_HOURS_PER_DAY
 import com.example.renew.AppConfig.MINIMUM_TIME_RESTRICTION
 import com.example.renew.AppConfig.MIN_HOURS_PER_DAY
+import com.example.renew.AppConfig.PUBLIC_HOLIDAY
 import com.example.renew.AppConfig.TOAST_MINITIME_NOT_COMPLETED
 import com.example.renew.AppConfig.TOAST_MINTIME
 import com.example.renew.AppConfig.TOAST_MINTIME_COMPLETED
@@ -57,6 +58,39 @@ class MainActivity : AppCompatActivity() {
         //Initialization of SharedPreferences for storing settings
         val sharedPreferences = getSharedPreferences("SP_INFO", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
+
+        /*if (PUBLIC_HOLIDAY.contains(LocalDate.now().toString() )) {
+            Toast.makeText(this@MainActivity, "Today is Holiday", Toast.LENGTH_SHORT).show()
+
+            var dataDate = LocalDate.now().toString()
+            var dataInTime = "09:00"
+            var dataOutTime = "18:00"
+            var dataTimeSpent = AVG_HOURS_PER_DAY.toString()
+            var dataReg = "No"
+            var dataLeave = "No"
+            var dataWeekOfYear = c[Calendar.WEEK_OF_YEAR].toString()
+            var dataMonthOfYear = c[Calendar.MONTH].toString()
+            var dataDayOfWeek = c[Calendar.DAY_OF_WEEK].toString()
+
+
+            var result = usersDBHelper.deleteUser(dataDate)
+            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
+
+            result = usersDBHelper.insertUser(
+                UserModel(
+                    dataDate = dataDate,
+                    dataInTime = dataInTime,
+                    dataOutTime = dataOutTime,
+                    dataTimeSpent = dataTimeSpent,
+                    dataReg = dataReg,
+                    dataWeekOfYear = dataWeekOfYear,
+                    dataLeave = dataLeave,
+                    dataMonthOfYear = dataMonthOfYear,
+                    dataDayOfWeek = dataDayOfWeek
+                )
+            )
+            Toast.makeText(this, result.toString(), Toast.LENGTH_SHORT).show()
+        }*/
 
         val handler = Handler()
         handler.post(object : Runnable {

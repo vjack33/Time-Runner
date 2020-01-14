@@ -120,6 +120,7 @@ class WeekdetailsActivity : AppCompatActivity() {
                 d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
 
                 var tWeek = d[Calendar.WEEK_OF_YEAR]
+                var tMonth = d[Calendar.MONTH]
                 textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
                 textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
                 textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
@@ -132,8 +133,8 @@ class WeekdetailsActivity : AppCompatActivity() {
 
 
                 textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
-                textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
-                textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+                textViewRegularise.text = usersDBHelper.getRegulariseMonth(tMonth.toString()).toString()
+                textViewLeaves.text = usersDBHelper.getLeaveMonth(tMonth.toString()).toString()
 
                 var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
                 var remainingWeekHours = remainingWeekTime / 60
@@ -173,6 +174,7 @@ class WeekdetailsActivity : AppCompatActivity() {
             d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
 
             var tWeek = d[Calendar.WEEK_OF_YEAR]
+            var tMonth = d[Calendar.MONTH]
             textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
             textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
             textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
@@ -182,8 +184,8 @@ class WeekdetailsActivity : AppCompatActivity() {
             var weekMinutes = totalWeekTime % 60
 
             textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
-            textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
-            textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+            textViewRegularise.text = usersDBHelper.getRegulariseMonth(tMonth.toString()).toString()
+            textViewLeaves.text = usersDBHelper.getLeaveMonth(tMonth.toString()).toString()
 
             var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
             var remainingWeekHours = remainingWeekTime / 60
@@ -214,6 +216,8 @@ class WeekdetailsActivity : AppCompatActivity() {
                 d.set(tempparts[0].toInt() ,tempparts[1].toInt() - 1 , tempparts[2].toInt())
 
                 var tWeek = d[Calendar.WEEK_OF_YEAR]
+                var tMonth = d[Calendar.MONTH]
+
                 textViewWeekOverViewName.text = "Week " + d[Calendar.WEEK_OF_MONTH].toString()
                 textViewMonthOverViewName.text = DateFormatSymbols().months[d[Calendar.MONTH]]
                 textViewDayOverViewName.text = DateFormatSymbols().weekdays[d[Calendar.DAY_OF_WEEK]]
@@ -223,8 +227,8 @@ class WeekdetailsActivity : AppCompatActivity() {
                 var weekMinutes = totalWeekTime % 60
 
                 textViewWeekCompleted.text = weekHours.toString().padStart(2,'0') +":"+ weekMinutes.toString().padStart(2,'0')
-                textViewRegularise.text = usersDBHelper.getRegulariseMonth(mMonth.toString()).toString()
-                textViewLeaves.text = usersDBHelper.getLeaveMonth(mMonth.toString()).toString()
+                textViewRegularise.text = usersDBHelper.getRegulariseMonth(tMonth.toString()).toString()
+                textViewLeaves.text = usersDBHelper.getLeaveMonth(tMonth.toString()).toString()
 
                 var remainingWeekTime = MAX_WEEK_HOURS - weekHours*60 - weekMinutes
                 var remainingWeekHours = remainingWeekTime / 60
