@@ -31,7 +31,7 @@
     <ImageView
         android:id="@+id/imageViewBack"
         android:layout_width="16dp"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/banner8"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/textViewWeekFetchDate"
-        style="@style/TextCardHeader"
+        style="@style/TextTopHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
@@ -52,7 +52,7 @@
     <ImageView
         android:id="@+id/imageButtonWeekPreviousDate"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
         app:layout_constraintEnd_toStartOf="@+id/textViewWeekFetchDate"
         app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
@@ -61,7 +61,7 @@
     <ImageView
         android:id="@+id/imageButtonWeekNextDate"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
         app:layout_constraintStart_toEndOf="@+id/textViewWeekFetchDate"
         app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
