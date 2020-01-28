@@ -8,7 +8,8 @@ object AppConfig {
     var AVG_HOURS_PER_DAY = 9*60
     var MAX_HOURS_PER_DAY = (9*60)+30
 
-    var MINIMUM_TIME_RESTRICTION = true
+    var MINIMUM_TIME_RESTRICTION = false
+    var LATE_TIME_RESTRICTION = false
 
     val WORKING_DAYS = setOf("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY")
     var WEEKDAYS = WORKING_DAYS.count()
