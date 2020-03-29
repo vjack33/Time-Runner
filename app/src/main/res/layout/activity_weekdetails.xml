@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme"
+    tools:context=".WeekdetailsActivity">
+
+    <View
+        android:id="@+id/banner8"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="#FFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/TextTopHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/secondary_activity_header"
+        app:layout_constraintBottom_toBottomOf="@+id/banner8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/banner8" />
+
+    <ImageView
+        android:id="@+id/imageViewBack"
+        android:layout_width="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/banner8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/banner8"
+        app:srcCompat="@drawable/backarrow" />
+
+    <TextView
+        android:id="@+id/textViewWeekFetchDate"
+        style="@style/TextTopHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="10-12-19"
+        app:layout_constraintEnd_toEndOf="@+id/banner8"
+        app:layout_constraintStart_toStartOf="@+id/banner8"
+        app:layout_constraintTop_toBottomOf="@+id/banner8" />
+
+    <ImageView
+        android:id="@+id/imageButtonWeekPreviousDate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
+        app:layout_constraintEnd_toStartOf="@+id/textViewWeekFetchDate"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
+        app:srcCompat="@drawable/round_arrow_back_ios_black_48" />
+
+    <ImageView
+        android:id="@+id/imageButtonWeekNextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
+        app:layout_constraintStart_toEndOf="@+id/textViewWeekFetchDate"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
+        app:srcCompat="@drawable/round_arrow_forward_ios_black_48" />
+
+    <ImageView
+        android:id="@+id/imageViewEditTime"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWeekFetchDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonWeekNextDate"
+        app:layout_constraintTop_toTopOf="@+id/textViewWeekFetchDate"
+        app:srcCompat="@drawable/pencil" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeekFetchDate">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/banner4"
+                android:layout_width="0dp"
+                android:layout_height="138dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner6" />
+
+            <View
+                android:id="@+id/banner5"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/banner6"
+                android:layout_width="0dp"
+                android:layout_height="138dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner5" />
+
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="56dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toTopOf="@+id/banner5" />
+
+            <View
+                android:id="@+id/divider8"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner5"
+                app:layout_constraintEnd_toEndOf="@+id/divider7"
+                app:layout_constraintStart_toStartOf="@+id/divider7"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <View
+                android:id="@+id/divider9"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="56dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="@+id/banner6"
+                app:layout_constraintStart_toStartOf="@+id/banner6"
+                app:layout_constraintTop_toTopOf="@+id/banner6" />
+
+            <View
+                android:id="@+id/divider10"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="56dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="@+id/banner4"
+                app:layout_constraintStart_toStartOf="@+id/banner4"
+                app:layout_constraintTop_toTopOf="@+id/banner4" />
+
+            <View
+                android:id="@+id/divider11"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/divider12"
+                app:layout_constraintEnd_toEndOf="@+id/banner6"
+                app:layout_constraintHorizontal_bias="0.33"
+                app:layout_constraintStart_toStartOf="@+id/banner6"
+                app:layout_constraintTop_toTopOf="@+id/divider12" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner6"
+                app:layout_constraintEnd_toEndOf="@+id/banner6"
+                app:layout_constraintHorizontal_bias="0.66"
+                app:layout_constraintStart_toStartOf="@+id/banner6"
+                app:layout_constraintTop_toBottomOf="@+id/divider9" />
+
+            <View
+                android:id="@+id/divider13"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/divider8"
+                app:layout_constraintStart_toStartOf="@+id/divider11"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <View
+                android:id="@+id/divider14"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/divider8"
+                app:layout_constraintStart_toStartOf="@+id/divider12"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <TextView
+                android:id="@+id/textView13"
+                style="@style/TextRedSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/day_in_time"
+                app:layout_constraintEnd_toStartOf="@+id/divider13"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/TextBlueSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_Out_time"
+                app:layout_constraintEnd_toStartOf="@+id/divider14"
+                app:layout_constraintStart_toEndOf="@+id/divider13"
+                app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textView16"
+                style="@style/TextGreenSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_Spent_time"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toEndOf="@+id/divider14"
+                app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textViewInTimeFetched"
+                style="@style/TextRedBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toStartOf="@+id/divider13"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textViewOutTimeFetched"
+                style="@style/TextBlueBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toStartOf="@+id/divider14"
+                app:layout_constraintStart_toEndOf="@+id/divider13"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+            <TextView
+                android:id="@+id/textViewSpentTimeFetched"
+                style="@style/TextGreenBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toEndOf="@+id/divider14"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <TextView
+                android:id="@+id/textView20"
+                style="@style/TextRedSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tap the field you want to edit >>"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toBottomOf="@+id/banner4" />
+
+
+            <TextView
+                android:id="@+id/textView21"
+                style="@style/TextCardHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Week Overview"
+                app:layout_constraintBottom_toTopOf="@+id/divider9"
+                app:layout_constraintStart_toStartOf="@+id/divider9"
+                app:layout_constraintTop_toTopOf="@+id/banner6" />
+
+            <TextView
+                android:id="@+id/textView22"
+                style="@style/TextRedSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/week_total"
+                app:layout_constraintEnd_toStartOf="@+id/divider11"
+                app:layout_constraintStart_toStartOf="@+id/banner6"
+                app:layout_constraintTop_toBottomOf="@+id/divider9" />
+
+            <TextView
+                android:id="@+id/textView23"
+                style="@style/TextBlueSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/week_completed"
+                app:layout_constraintEnd_toStartOf="@+id/divider12"
+                app:layout_constraintStart_toEndOf="@+id/divider11"
+                app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+            <TextView
+                android:id="@+id/textView24"
+                style="@style/TextGreenSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/week_remaining"
+                app:layout_constraintEnd_toEndOf="@+id/banner6"
+                app:layout_constraintStart_toEndOf="@+id/divider12"
+                app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+            <TextView
+                android:id="@+id/textViewWeekTotal"
+                style="@style/TextRedBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="45:00"
+                app:layout_constraintEnd_toStartOf="@+id/divider11"
+                app:layout_constraintStart_toStartOf="@+id/banner6"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+            <TextView
+                android:id="@+id/textViewWeekCompleted"
+                style="@style/TextBlueBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="09:00"
+                app:layout_constraintEnd_toStartOf="@+id/divider12"
+                app:layout_constraintStart_toEndOf="@+id/divider11"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <TextView
+                android:id="@+id/textViewWeekRemaining"
+                style="@style/TextGreenBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="30:00"
+                app:layout_constraintEnd_toEndOf="@+id/banner6"
+                app:layout_constraintStart_toEndOf="@+id/divider12"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+            <TextView
+                android:id="@+id/textView28"
+                style="@style/TextCardHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Month Overview"
+                app:layout_constraintBottom_toTopOf="@+id/divider10"
+                app:layout_constraintStart_toStartOf="@+id/textView21"
+                app:layout_constraintTop_toTopOf="@+id/banner4" />
+
+            <TextView
+                android:id="@+id/textView29"
+                style="@style/TextRedSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/month_leave"
+                app:layout_constraintEnd_toStartOf="@+id/divider15"
+                app:layout_constraintStart_toStartOf="@+id/banner4"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+            <TextView
+                android:id="@+id/textView30"
+                style="@style/TextBlueSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/month_regular"
+                app:layout_constraintEnd_toStartOf="@+id/divider16"
+                app:layout_constraintStart_toEndOf="@+id/divider15"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+            <TextView
+                android:id="@+id/textView31"
+                style="@style/TextGreenSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toEndOf="@+id/banner4"
+                app:layout_constraintStart_toEndOf="@+id/divider16"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+            <TextView
+                android:id="@+id/textViewLeaves"
+                style="@style/TextRedBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="10"
+                app:layout_constraintEnd_toStartOf="@+id/divider15"
+                app:layout_constraintStart_toStartOf="@+id/banner4"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+            <TextView
+                android:id="@+id/textViewRegularise"
+                style="@style/TextBlueBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="9"
+                app:layout_constraintEnd_toStartOf="@+id/divider16"
+                app:layout_constraintStart_toEndOf="@+id/divider15"
+                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+            <TextView
+                android:id="@+id/textView34"
+                style="@style/TextGreenBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toEndOf="@+id/banner4"
+                app:layout_constraintStart_toEndOf="@+id/divider16"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <View
+                android:id="@+id/divider15"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner4"
+                app:layout_constraintStart_toStartOf="@+id/divider11"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+
+            <View
+                android:id="@+id/divider16"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner4"
+                app:layout_constraintStart_toStartOf="@+id/divider12"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+
+            <View
+                android:id="@+id/divider17"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner5"
+                app:layout_constraintStart_toStartOf="@+id/divider11"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+            <View
+                android:id="@+id/divider18"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/banner5"
+                app:layout_constraintStart_toStartOf="@+id/divider12"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TextRedSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toStartOf="@+id/divider17"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/TextBlueSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_regular"
+                app:layout_constraintEnd_toStartOf="@+id/divider18"
+                app:layout_constraintStart_toEndOf="@+id/divider17"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/TextGreenSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_leave"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toEndOf="@+id/divider18"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textViewHalfDayFetched"
+                style="@style/TextRedBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toStartOf="@+id/divider17"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textViewLeaveFetched"
+                style="@style/TextGreenBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toEndOf="@+id/divider18"
+                app:layout_constraintTop_toTopOf="@+id/textViewHalfDayFetched" />
+
+            <TextView
+                android:id="@+id/textViewRegFetched"
+                style="@style/TextBlueBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_value"
+                app:layout_constraintEnd_toStartOf="@+id/divider18"
+                app:layout_constraintStart_toEndOf="@+id/divider17"
+                app:layout_constraintTop_toTopOf="@+id/textViewHalfDayFetched" />
+
+
+            <Button
+                android:id="@+id/buttonWeekSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintStart_toEndOf="@+id/divider18"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <Button
+                android:id="@+id/buttonWeekCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@+id/divider17"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toTopOf="@+id/buttonWeekSave" />
+
+            <TextView
+                android:id="@+id/textViewWeekOverViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="-"
+                app:layout_constraintEnd_toEndOf="@+id/divider9"
+                app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+            <TextView
+                android:id="@+id/textViewMonthOverViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="-"
+                app:layout_constraintEnd_toEndOf="@+id/divider10"
+                app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Day Overview"
+                app:layout_constraintBottom_toTopOf="@+id/divider7"
+                app:layout_constraintStart_toStartOf="@+id/banner5"
+                app:layout_constraintTop_toTopOf="@+id/banner5" />
+
+            <TextView
+                android:id="@+id/textViewDayOverViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="-"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintEnd_toEndOf="@+id/banner5"
+                app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+            <View
+                android:id="@+id/divider19"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="250dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/banner4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
