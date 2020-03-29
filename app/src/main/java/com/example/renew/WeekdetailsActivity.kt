@@ -26,6 +26,7 @@ import com.example.renew.AppConfig.TOAST_MAXTIME
 import com.example.renew.AppConfig.TOAST_MINTIME
 import com.example.renew.AppConfig.TOAST_SAMEDAY_LEAVE_REG
 import com.example.renew.AppConfig.TOAST_TIME_SELECTION_ERROR
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_weekdetails.*
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
@@ -50,7 +51,6 @@ class WeekdetailsActivity : AppCompatActivity() {
         textViewOutTimeFetched.isEnabled = false
         textViewRegFetched.isEnabled = false
         textViewLeaveFetched.isEnabled = false
-
 
         textViewWeekFetchDate.text = LocalDate.now().toString()
         var users = usersDBHelper.readUser(textViewWeekFetchDate.text.toString())
@@ -352,6 +352,8 @@ class WeekdetailsActivity : AppCompatActivity() {
 
             banner5.setBackgroundColor(getColor(R.color.colorEditMode))
         }
+
+
     }
 
 
